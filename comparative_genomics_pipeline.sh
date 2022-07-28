@@ -4,7 +4,7 @@ wd=/home/steffi
 # Paths to the softwares in the pipeline in the Rambo server
 samtools=/opt/bix/samtools/1.9/samtools
 blast=$wd/installations/ncbi-blast-2.13.0+/bin/blast
-seqkit=/home/steffi/anaconda3/bin/seqkit
+seqkit=$wdi/anaconda3/bin/seqkit
 bcftools=/opt/bix/bcftools/1.6/bcftools
 mafft=$wd/installations/mafft-linux64/mafftdir/bin/mafft
 snp-sites=$wd/installations/snp-sites/src/snp-sites
@@ -13,6 +13,7 @@ snp-sites=$wd/installations/snp-sites/src/snp-sites
 # Assuming that the initial file for analysis is in /home/steffi which is the present working directory.
 # Create directories to store the results
 mkdir $wd/Results
+
 # Create subdirectories to store results of different species comparisons
 mkdir Results/chilense_lycopersicum
 mkdir Results/chilense_lycopersicoides
@@ -20,13 +21,14 @@ mkdir Results/chilense_pennellii
 mkdir Results/chilense_pimpinellifolium
 mkdir Results/chilense_sitiens
 
+# Store the Results sub directories to different variables
 cl=Results/chilense_lycopersicum
 cly=Results/chilense_lycopersicoides
 cp=Results/chilense_pennellii
 cpi=Results/chilense_pimpinellifolium
 cs=Results/chilense_sitiens
 
-# Store the genome CDS sequences and protein sequences of different species under the study to a variable
+# Store the nucleotide and protein sequences of different species under the study to different variables
 lycopersicum=$wd/genomes/tomato/ITAG4.1_CDS.fasta
 lycopersicum_protein=$wd/genomes/tomato/ITAG4.1_proteins.fasta
 lycopersicoides=$wd/genomes/Slycopersicoides/SlydLA2951_v2.0_cds.fasta
@@ -38,6 +40,12 @@ pimpinellifolium_protein=$wd/genomes/Spimpinellifolium/Spimpinellifolium_genome.
 sitiens=$wd/genomes/Ssitiens/augustus.hints.mrna
 sitiens_protein=$wd/genomes/Ssitiens/sitiens_augustus.hints.aa
 
+# Merge S.chilense and other species's  proteins file
+cat augustus.with.hints.filtered.aa.fasta /home/steffi/genomes/tomato/ITAG4.1_proteins.fasta > chilense_lycopersicum_genome_aa.fa
+cat augustus.with.hints.filtered.aa.fasta $lycopersicoides_protein > chilense_lycopersicoides_genome_aa.fa
+cat augustus.with.hints.filtered.aa.fasta $pennellii_protein > chilense_pennellii_genome_aa.fa
+cat augustus.with.hints.filtered.aa.fasta $pimpinellifolium_protein > chilense_pimpinellifolium_genome_aa.fa
+cat augustus.with.hints.filtered.aa.fasta $sitiens_protein > chilense_sitiens_genome_aa.fa
 
 # Extract the chilenseID , CDS, CDS start, CDS end and  Gene Ontology IDs and write to a file.
 # The 9th column has the GO IDs, which are separated using ";". These GO IDs should be splitted.
@@ -77,7 +85,6 @@ write.table(data.frame(dup),"Results/chilense.GO.terms.salt.drought", quote=F, r
 q()
 n
 
-
 # Extract ID, Gene start and stop from the Interpro.gff3 file for the GO IDs in the chilense.GO.terms.salt.drought
 awk '{print $1}' Results/chilense.GO.terms.salt.drought | sed '1d' > Results/chilense.GO.terms.salt.drought.IDs
 
@@ -111,13 +118,6 @@ cat Results/chilense.GO.terms.salt.drought.IDs.location | awk 'BEGIN {OFS = "\t"
 /opt/bix/samtools/1.9/samtools faidx augustus.with.hints.codingseq -r Results/chilense.GOtermsID.regions > Results/chilense.GO.terms.salt.drought.IDs.fasta
 # Amino acid sequence extraction
 /opt/bix/samtools/1.9/samtools faidx augustus.with.hints.filtered.aa.fasta -r Results/chilense.GO.terms.regions > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
-
-# Merge S.chilense and other species proteins file
-cat augustus.with.hints.filtered.aa.fasta /home/steffi/genomes/tomato/ITAG4.1_proteins.fasta > chilense_lycopersicum_genome_aa.fa
-cat augustus.with.hints.filtered.aa.fasta $lycopersicoides_protein > chilense_lycopersicoides_genome_aa.fa
-cat augustus.with.hints.filtered.aa.fasta $pennellii_protein > chilense_pennellii_genome_aa.fa
-cat augustus.with.hints.filtered.aa.fasta $pimpinellifolium_protein > chilense_pimpinellifolium_genome_aa.fa
-cat augustus.with.hints.filtered.aa.fasta $sitiens_protein > chilense_sitiens_genome_aa.fa
 
 1. Sequence comparison between S.chilense & S.lycopersicum
 # Blastn is used for performing the sequence similarity search. Only the query coverage per HSP greater than 90% is reported.
