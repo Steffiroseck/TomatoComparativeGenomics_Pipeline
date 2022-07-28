@@ -17,7 +17,7 @@ Please follow the below instructions if the R packages and tools used in this pi
 
 1. GO.db package
 
-start R (version "4.2") and enter:
+    start R (version "4.2") and enter:
 
     install.packages("dplyr")
     if (!require("BiocManager", quietly = TRUE))
