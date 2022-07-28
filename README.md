@@ -13,7 +13,7 @@ The initial file for this analysis is a file which has the S. chilense gene ids,
 6. bcftools v1.6 
 7. seqkit
 
-If the R packages are not installed, follow the below commands;
+1. If the R packages are not installed, follow the below commands;
 
 start R (version "4.2") and enter:
 
@@ -24,7 +24,7 @@ start R (version "4.2") and enter:
 
 If the softwares used in the pipeline are not already installed, please find the  instructions to install them below
 
-1. samtools
+2. samtools
     a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
     
     b. Unzip the file  
@@ -42,7 +42,7 @@ If the softwares used in the pipeline are not already installed, please find the
     
         export PATH=$PATH:/directory/samtools-X.X.XX 
         
-2. NCBI-BLAST
+3. NCBI-BLAST
 
 4. MAFFT v7.490
 
@@ -62,7 +62,7 @@ If the softwares used in the pipeline are not already installed, please find the
     
         export PATH=$PATH:/directory/mafft-x.x/bin/     
         
-4. snp-sites. This tool has a git repository and can be directory cloned from the repository
+5. snp-sites. This tool has a git repository and can be directory cloned from the repository
 
     a. Clone from the git respository. Type in bash;  
     
@@ -80,9 +80,9 @@ If the softwares used in the pipeline are not already installed, please find the
     
         export PATH=$PATH:/directory/snp-sites/src/  
         
-5. bcftools
+6. bcftools
 
-6. seqkit
+7. seqkit
 
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
 
