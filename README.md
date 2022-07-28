@@ -49,56 +49,56 @@ If the softwares used in the pipeline are not already installed, please find the
 
 3. MAFFT v7.490
 
-  a. Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)
+    a. Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)
   
-  b. Untar the package
+    b. Untar the package
   
-      gunzip -cd mafft-x.x-src.tgz | tar xfv -
+        gunzip -cd mafft-x.x-src.tgz | tar xfv -
       
-      cd mafft-x.x/core/
+        cd mafft-x.x/core/
       
-  c. Compile and install
+    c. Compile and install
   
-      make 
+        make 
       
-      make install
+        make install
       
-  d. Modify the .bashrc file
+    d. Modify the .bashrc file
   
-      export PATH=$PATH:/directory/mafft-x.x/bin/
+        export PATH=$PATH:/directory/mafft-x.x/bin/
       
 4. snp-sites. This tool has a git repository and can be directory cloned from the repository
 
-  a. Clone from the git respository. Type in bash;
+    a. Clone from the git respository. Type in bash;
   
-      git clone https://github.com/sanger-pathogens/snp-sites.git
+        git clone https://github.com/sanger-pathogens/snp-sites.git
       
-  b. Install
+    b. Install
   
-      cd snp-sites/
+        cd snp-sites/
       
-      autoreconf -i -f
+        autoreconf -i -f
       
-      ./configure
+        ./configure
       
-      make
+        make
       
-      make install
+        make install
       
-  c. Modify the .bashrc file
+    c. Modify the .bashrc file
   
-      export PATH=$PATH:/directory/snp-sites/src/
+        export PATH=$PATH:/directory/snp-sites/src/
       
 5. bcftools
 
-7. seqkit
+6. seqkit
 
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
 
-conda install -c bioconda samtools
+    conda install -c bioconda samtools
 
-conda install -c bioconda bcftools
+    conda install -c bioconda bcftools
 
-conda install -c bioconda mafft
+    conda install -c bioconda mafft
 
-conda install -c bioconda seqkit
+    conda install -c bioconda seqkit
