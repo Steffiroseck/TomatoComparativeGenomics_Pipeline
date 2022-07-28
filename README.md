@@ -6,7 +6,6 @@ The initial file for this analysis is a file which has the S. chilense gene ids,
 
 # Tools used in this pipeline
 1. R packages - GO.db, dplyr
-
 2. samtools v1.9
 3. NCBI Blast v2.13.0
 4. MAFFT v7.490 (2021/Oct/30)
@@ -16,23 +15,26 @@ The initial file for this analysis is a file which has the S. chilense gene ids,
 
 # If the R packages are not installed, follow the below commands;
 start R (version "4.2") and enter:
+
 install.packages("dplyr")
+
 if (!require("BiocManager", quietly = TRUE))
+
     install.packages("BiocManager")
 
 BiocManager::install("GO.db")
 
 #If the softwares used in the pipeline are not already installed, please find the  instructions to install them below;
-# 1. samtools
-  a) Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) .
-  b) Unzip the file
-  c) In Bash,
+1. samtools
+  a.  Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/)
+  b. Unzip the file
+  c. In Bash,
       tar xvjf samtools-X.X.tar.bz2 
-  d) Go into the newly created directory and compile the code by typing make:
+  d. Go into the newly created directory and compile the code by typing make:
       cd samtools-1.1
       make
-  e) Modify your .bashrc file so that when you type "samtools" it calls the program:
-      export PATH=$PATH:/directory/samtools-X.X.XX 
+  e. Modify your .bashrc file so that when you type "samtools" it calls the program:
+     export PATH=$PATH:/directory/samtools-X.X.XX 
 
 # 2. NCBI-BLAST
 
