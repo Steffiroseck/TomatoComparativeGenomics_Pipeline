@@ -1,11 +1,14 @@
 # tomato_comparative_genomics_pipeline
 This is a pipeline which performs comparative genomics of tomato and its wild relatives based on Gene Ontologies.
 The main objective behind creating this pipeline was to find out the genetic changes between domestic variety of tamato (S.lycopersicum), and its wild relatives (S.chilense, S.pennellii, S.pimpinellifolium, S.sitiens, and S.lycopersicoides) to better understand how the wild varities withstand stresses like salinity and drought, and why the domestic variety does not.
+
 The initial file for this analysis is a file which has the S. chilense gene ids, their start and end coordinates , gene descriptions, gene ontologies etc..This pipeline takes this initial file and extracts the Gene Ontolgy (GO) IDs and tries to find the IDs which are related to salinity or drought tolerances. Using these GO Ids, the genes and their sequences are extracted and compared with the domestic species S.lycopersicum. In this study, we also take three more wild relatives of S.lycopersicum which are; S.pennellii, S.lycopersicoides, S.pimpinellifolium, and S.sitiens. 
 
 # Tools used in this pipeline
 R packages -
+
 (GO.db), (dplyr)
+
 samtools v1.9
 NCBI Blast v2.13.0
 MAFFT v7.490 (2021/Oct/30)
