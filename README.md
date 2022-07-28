@@ -1,10 +1,16 @@
 # tomato_comparative_genomics_pipeline
-This is a pipeline which performs comparative genomics of tomato and its wild relatives based on Gene Ontologies.
-The main objective behind creating this pipeline was to find out the genetic changes between domestic variety of tamato (S.lycopersicum), and its wild relatives (S.chilense, S.pennellii, S.pimpinellifolium, S.sitiens, and S.lycopersicoides) to better understand how the wild varities withstand stresses like salinity and drought, and why the domestic variety does not.
+# Contents
+* Introduction
+* Software Requirements and Installation
+* Usage
 
-The initial file for this analysis is a file which has the S. chilense gene ids, their start and end coordinates , gene descriptions, gene ontologies etc..This pipeline takes this initial file and extracts the Gene Ontolgy (GO) IDs and tries to find the IDs which are related to salinity or drought tolerances. Using these GO Ids, the genes and their sequences are extracted and compared with the domestic species S.lycopersicum. We also compare four other wild relatives of S.lycopersicum which are; S.pennellii, S.lycopersicoides, S.pimpinellifolium, and S.sitiens. 
+# Introduction
+This is a pipeline which performs comparative genomics analysis of tomato and its wild relatives based on Gene Ontologies.
+The main objective behind creating this pipeline was to find out the genetic changes between the domestic variety of tamato (_Solanum.lycopersicum_), and its wild relatives (_Solanum.chilense, Solanum.pennellii, Solanum.pimpinellifolium, Solanum.sitiens_, and _Solanum.lycopersicoides_) to better understand how the wild varities withstand abiotic stresses like salinity and drought, and why the domestic variety does not.
 
-# Softwares required
+The initial file for this pipeline is a file which has the gene ids, their start and end coordinates, gene descriptions, and gene ontologies of _S. chilense_. The pipeline takes this initial file and extracts the Gene Ontolgy (GO) IDs and tries to find the IDs which are related to salinity or drought tolerances using an R package. Next, the genes and their sequences are extracted for the GO IDs having salinity or drought GO terms. These gene sequences are then compared with the whole genome of the domestic species _S.lycopersicum_ to find out sequence differences. 
+
+# Software Requirements and Installation
 1. R packages - GO.db, dplyr
 2. samtools v1.9
 3. NCBI Blast v2.13.0
