@@ -13,8 +13,9 @@ The initial file for this analysis is a file which has the S. chilense gene ids,
 6. bcftools v1.6 
 7. seqkit
 
+Please follow the below instructions if the R packages and tools used in this pipeline are not already installed on your system.
 
-1. If the R packages are not installed, follow the below commands;
+1. GO.db package
 
 start R (version "4.2") and enter:
 
@@ -23,7 +24,6 @@ start R (version "4.2") and enter:
     install.packages("BiocManager")
     BiocManager::install("GO.db")
 
-If the softwares used in the pipeline are not already installed, please find the  instructions to install them below
 
 2. samtools
     a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
