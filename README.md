@@ -24,15 +24,21 @@ start R (version "4.2") and enter:
 If the softwares used in the pipeline are not already installed, please find the  instructions to install them below
 
 1. samtools
-
-    a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/)  
+    a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
+    
     b. Unzip the file  
+    
     c. In Bash,
-        tar xvjf samtools-X.X.tar.bz2       
-    d. Go into the newly created directory and compile the code by typing make:  
+    
+        tar xvjf samtools-X.X.tar.bz2  
+        
+    d. Go into the newly created directory and compile the code by typing make: 
+    
         cd samtools-1.1     
         make     
-    e. Modify your .bashrc file so that when you type "samtools" it calls the program:  
+        
+    e. Modify your .bashrc file so that when you type "samtools" it calls the program: 
+    
         export PATH=$PATH:/directory/samtools-X.X.XX 
         
 2. NCBI-BLAST
