@@ -8,7 +8,7 @@ The initial file for this analysis is a file which has the S. chilense gene ids,
 1. R packages - GO.db, dplyr
 2. samtools v1.9
 3. NCBI Blast v2.13.0
-4. MAFFT v7.490 (2021/Oct/30)
+4. MAFFT v7.490 
 5. Snp-sites
 6. bcftools v1.6 
 7. seqkit
