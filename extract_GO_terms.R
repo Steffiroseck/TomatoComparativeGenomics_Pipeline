@@ -4,7 +4,7 @@
 
 # Set the working directory
 
-  setwd("/home/steffi/)
+  setwd("/home/steffi/")
   data = scan('Results/Chilense.GO.IDs.final', character(), sep='\t')
   result=select(GO.db, keys=data, columns = c("TERM",'ONTOLOGY'), keytype = "GOID")
   result=data.frame(result)
