@@ -103,7 +103,7 @@
   seqkit grep -f Results/chilense.GO.terms.regions augustus.with.hints.filtered.aa.fasta > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
 
 # Merge S.chilense and other species proteins file
-  cat augustus.with.hints.filtered.aa.fasta /home/steffi/genomes/tomato/ITAG4.1_proteins.fasta > chilense_lycopersicum_genome_aa.fa
+  cat augustus.with.hints.filtered.aa.fasta $lycopersicum_protein > chilense_lycopersicum_genome_aa.fa
   cat augustus.with.hints.filtered.aa.fasta $lycopersicoides_protein > chilense_lycopersicoides_genome_aa.fa
   cat augustus.with.hints.filtered.aa.fasta $pennellii_protein > chilense_pennellii_genome_aa.fa
   cat augustus.with.hints.filtered.aa.fasta $pimpinellifolium_protein > chilense_pimpinellifolium_genome_aa.fa
