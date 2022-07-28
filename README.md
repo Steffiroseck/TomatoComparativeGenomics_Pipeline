@@ -24,48 +24,80 @@ if (!require("BiocManager", quietly = TRUE))
 
 BiocManager::install("GO.db")
 
-#If the softwares used in the pipeline are not already installed, please find the  instructions to install them below;
+If the softwares used in the pipeline are not already installed, please find the  instructions to install them below;
+
 1. samtools
   a.  Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/)
+  
   b. Unzip the file
+  
   c. In Bash,
       tar xvjf samtools-X.X.tar.bz2 
+      
   d. Go into the newly created directory and compile the code by typing make:
-      cd samtools-1.1
-      make
+  
+     cd samtools-1.1
+     
+     make
+     
   e. Modify your .bashrc file so that when you type "samtools" it calls the program:
+  
      export PATH=$PATH:/directory/samtools-X.X.XX 
 
-# 2. NCBI-BLAST
+2. NCBI-BLAST
 
-# 3. MAFFT v7.490
-  a) Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)
-  b) Untar the package
+3. MAFFT v7.490
+
+  a. Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)
+  
+  b. Untar the package
+  
       gunzip -cd mafft-x.x-src.tgz | tar xfv -
+      
       cd mafft-x.x/core/
-  c) Compile and Install
+      
+  c. Compile and install
+  
       make 
+      
       make install
-  d) Modify the .bashrc file
+      
+  d. Modify the .bashrc file
+  
       export PATH=$PATH:/directory/mafft-x.x/bin/
       
-# 4. snp-sites. This tool has a git repository and can be directory cloned from the repository
-  a) Clone from the git respository. Type in bash;
+4. snp-sites. This tool has a git repository and can be directory cloned from the repository
+
+  a. Clone from the git respository. Type in bash;
+  
       git clone https://github.com/sanger-pathogens/snp-sites.git
-  b) Install
+      
+  b. Install
+  
       cd snp-sites/
+      
       autoreconf -i -f
+      
       ./configure
+      
       make
+      
       make install
-  c) Modify the .bashrc file
+      
+  c. Modify the .bashrc file
+  
       export PATH=$PATH:/directory/snp-sites/src/
       
-# 5. bcftools
-# 6. seqkit
+5. bcftools
 
-# Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
+7. seqkit
+
+Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
+
 conda install -c bioconda samtools
+
 conda install -c bioconda bcftools
+
 conda install -c bioconda mafft
+
 conda install -c bioconda seqkit
