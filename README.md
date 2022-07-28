@@ -16,13 +16,13 @@ The initial file for this analysis is a file which has the S. chilense gene ids,
 # If the R packages are not installed, follow the below commands;
 start R (version "4.2") and enter:
 
-install.packages("dplyr")
+  install.packages("dplyr")
 
-if (!require("BiocManager", quietly = TRUE))
+  if (!require("BiocManager", quietly = TRUE))
 
-install.packages("BiocManager")
+    install.packages("BiocManager")
 
-BiocManager::install("GO.db")
+  BiocManager::install("GO.db")
 
 If the softwares used in the pipeline are not already installed, please find the  instructions to install them below;
 
