@@ -129,8 +129,8 @@ makeblastdb -in $lycopersicum -dbtype 'nucl'
 blastn -db /home/steffi/genomes/tomato/ITAG4.1_CDS.fasta -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cl/chilense.lycopersicum.blastn #198 matches
 
 # Extract just the chilenseIDs and lycopersicum IDs to a file
-awk '{print $1}' $cl/chilense.lycopersicum.blastn > $cl/chilenseIDs
-awk '{print $2}' $cl/chilense.lycopersicum.blastn > $cl/lycopersicumIDs
+awk '{print $1}' $cl/chilense.lycopersicum.blastn > $cl/chilenseID_lycopersicum
+awk '{print $2}' $cl/chilense.lycopersicum.blastn > $cl/lycopersicumID
 
 # Get total number of unique ids from the Blastn result
 sort $cl/chilenseIDs | uniq | wc -l #112
@@ -174,7 +174,7 @@ makeblastdb -in $pennellii -dbtype 'nucl'
 blastn -db $pennellii -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cp/chilense.pennellii.blastn #265 matches
 
 # Extract chilenseIDs and pennellii IDs to a file
-awk '{print $1}' $cp/chilense.pennellii.blastn > $cp/chilenseID
+awk '{print $1}' $cp/chilense.pennellii.blastn > $cp/chilenseID_pennellii
 awk '{print $2}' $cp/chilense.pennellii.blastn > $cp/pennelliiID
 
 # Extract chilense and pennellii IDS in each line to a separate file
@@ -206,7 +206,7 @@ makeblastdb -in $lycopersicoides -dbtype 'nucl'
 blastn -db $lycopersicoides -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cly/chilense.lycopersicoides.blastn #233 matches
 
 # Extract chilenseIDs and lycopersicoides IDs to a file
-awk '{print $1}' $cly/chilense.lycopersicoides.blastn > $cly/chilenseID
+awk '{print $1}' $cly/chilense.lycopersicoides.blastn > $cly/chilenseID_lycopersicoides
 awk '{print $2}' $cly/chilense.lycopersicoides.blastn > $cly/lycopersicoidesID
 
 # Extract chilense and lycopersicoides IDS in each line to a separate file
@@ -237,8 +237,8 @@ makeblastdb -in $pimpinellifolium -dbtype 'nucl'
 blastn -db $pimpinellifolium -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cpi/chilense.pimpinellifolium.blastn #204 matches
 
 # Extract chilenseIDs and pimpinellifolium IDs to a file
-awk '{print $1}' $cpi/chilense.pimpinellifolium.blastn > $cpi/chilenseID
-awk '{print $2}' $cpi/chilense.pimpinellifolium.blastn > $cpi/lycopersicoidesID
+awk '{print $1}' $cpi/chilense.pimpinellifolium.blastn > $cpi/chilenseID_pimpinellifolium
+awk '{print $2}' $cpi/chilense.pimpinellifolium.blastn > $cpi/lpimpinellifoliumID
 
 # Extract chilense and pimpinellifolium IDS in each line to a separate file
 cd $cpi
@@ -268,7 +268,7 @@ makeblastdb -in $sitiens -dbtype 'nucl'
 blastn -db $sitiens -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cs/chilense.sitiens.blastn #279 matches
 
 # Extract chilenseIDs and sitiens IDs to a file
-awk '{print $1}' $cs/chilense.sitiens.blastn > $cs/chilenseID
+awk '{print $1}' $cs/chilense.sitiens.blastn > $cs/chilenseID_sitiens
 awk '{print $2}' $cs/chilense.sitiens.blastn > $cs/sitiensID
 
 # Extract chilense and sitiens IDS in each line to a separate file
