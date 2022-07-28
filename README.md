@@ -13,7 +13,7 @@ The initial file for this analysis is a file which has the S. chilense gene ids,
 6. bcftools v1.6 
 7. seqkit
 
-# If the R packages are not installed, follow the below commands;
+If the R packages are not installed, follow the below commands;
 start R (version "4.2") and enter:
 
     install.packages("dplyr")
