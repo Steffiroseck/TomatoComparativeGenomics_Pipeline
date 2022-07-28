@@ -21,8 +21,10 @@ start R (version "4.2") and enter:
     install.packages("BiocManager")
     BiocManager::install("GO.db")
 
-If the softwares used in the pipeline are not already installed, please find the  instructions to install them below;
+If the softwares used in the pipeline are not already installed, please find the  instructions to install them below
+
 1. samtools
+
     a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/)  
     b. Unzip the file  
     c. In Bash,
@@ -32,6 +34,7 @@ If the softwares used in the pipeline are not already installed, please find the
         make     
     e. Modify your .bashrc file so that when you type "samtools" it calls the program:  
         export PATH=$PATH:/directory/samtools-X.X.XX 
+        
 2. NCBI-BLAST
 3. MAFFT v7.490
     a. Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)  
