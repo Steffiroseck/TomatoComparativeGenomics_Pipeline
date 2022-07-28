@@ -26,6 +26,7 @@ start R (version "4.2") and enter:
 
 
 2. samtools
+
     a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
     
     b. Unzip the file  
