@@ -28,22 +28,22 @@ If the softwares used in the pipeline are not already installed, please find the
 
 1. samtools
 
-  a.  Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/)
+    a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/)
   
-  b. Unzip the file
+    b. Unzip the file
   
-  c. In Bash,
-      tar xvjf samtools-X.X.tar.bz2 
+    c. In Bash,
+        tar xvjf samtools-X.X.tar.bz2 
       
-  d. Go into the newly created directory and compile the code by typing make:
+    d. Go into the newly created directory and compile the code by typing make:
   
-     cd samtools-1.1
+        cd samtools-1.1
      
-     make
+        make
      
-  e. Modify your .bashrc file so that when you type "samtools" it calls the program:
+    e. Modify your .bashrc file so that when you type "samtools" it calls the program:
   
-     export PATH=$PATH:/directory/samtools-X.X.XX 
+        export PATH=$PATH:/directory/samtools-X.X.XX 
 
 2. NCBI-BLAST
 
