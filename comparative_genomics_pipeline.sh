@@ -119,7 +119,7 @@ cat augustus.with.hints.filtered.aa.fasta $pennellii_protein > chilense_pennelli
 cat augustus.with.hints.filtered.aa.fasta $pimpinellifolium_protein > chilense_pimpinellifolium_genome_aa.fa
 cat augustus.with.hints.filtered.aa.fasta $sitiens_protein > chilense_sitiens_genome_aa.fa
 
-######################################################################################################################################################### 1. Sequence comparison between S.chilense & S.lycopersicum
+1. Sequence comparison between S.chilense & S.lycopersicum
 # Blastn is used for performing the sequence similarity search. Only the query coverage per HSP greater than 90% is reported.
 
 # Make the Blast database for the Blastn analysis
@@ -166,25 +166,7 @@ cd
 # Run PROVEAN analysis
 # Copy the proveaninput file contents for each file in the PROVEAN website's variants section. Copy the chilense amino acid gene sequence to the protein sequence section. Submit job 
 
-###################################################################### RUN NUCMER BETWEEN GO TERMS in Chilense and lycopersicum
-# copy the solIDS from blastn result againts chilense GO terms
-awk -F '\t' '{print $2}' chilense_GOtermsID_lycopersicum.blastn >solID_GOterms_matches
-
-# Extract fasta sequences
- seqkit grep -f solID_GOterms_matches /home/steffi/genomes/tomato/ITAG4.1_CDS.fasta > solID_GOterms_matches.fasta
- 
-# Run nucmer alignment
-/opt/bix/mummer/4.0.0/bin/nucmer --mum --minmatch=50 --mincluster=100 --prefix=chilense_lycopersicum_nucmer --threads=8 chilense_GOtermsID.fasta solID_GOterms_matches.fasta
- 
-# Filter the alignments
-/opt/bix/mummer/4.0.0/bin/delta-filter -1 chilense_lycopersicum_nucmer.delta > chilense_lycopersicum_nucmer.delta.filter
- 
-# Run show-diff
-/opt/bix/mummer/4.0.0/bin/show-diff -H -q chilense_lycopersicum_nucmer.delta > chilense_lycopersicum_nucmer.delta.diff #No inversions
-
-#######################################################################################################################################################
-
-# 2. Sequence comparison between S.chilense and S.pennellii
+2. Sequence comparison between S.chilense and S.pennellii
 # The GO terms fasta file of S.chilense is the query file for the analysis
 
 # Blast similarity search of GO terms in S.chilense against S.pennellii
@@ -195,7 +177,7 @@ blastn -db $pennellii -query Results/chilense.GO.terms.salt.drought.IDs.fasta -q
 awk '{print $1}' $cp/chilense.pennellii.blastn > $cp/chilenseID
 awk '{print $2}' $cp/chilense.pennellii.blastn > $cp/pennelliiID
 
-# Extract chilense and sol IDS in each line to a separate file
+# Extract chilense and pennellii IDS in each line to a separate file
 cd $cp
 awk '{print $1"\n"$2 > $1"_"$2 ".txt"}' chilense.pennellii.blastn
 
@@ -216,19 +198,18 @@ for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} |
 for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
 cd
 
-#######################################################################################################################################################
-# 3. Sequence comparison between S.chilense and S.lycopersicoides
+3. Sequence comparison between S.chilense and S.lycopersicoides
 # The GO terms fasta file of S.chilense is the query file for the analysis
 
-# Blast similarity search of GO terms in S.chilense against S.pennellii
+# Blast similarity search of GO terms in S.chilense against S.lycopersicoides
 makeblastdb -in $lycopersicoides -dbtype 'nucl'
 blastn -db $lycopersicoides -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cly/chilense.lycopersicoides.blastn #233 matches
 
-# Extract chilenseIDs and pennellii IDs to a file
+# Extract chilenseIDs and lycopersicoides IDs to a file
 awk '{print $1}' $cly/chilense.lycopersicoides.blastn > $cly/chilenseID
 awk '{print $2}' $cly/chilense.lycopersicoides.blastn > $cly/lycopersicoidesID
 
-# Extract chilense and sol IDS in each line to a separate file
+# Extract chilense and lycopersicoides IDS in each line to a separate file
 cd $cly
 awk '{print $1"\n"$2 > $1"_"$2 ".txt"}' chilense.lycopersicoides.blastn
 
@@ -248,19 +229,18 @@ for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} |
 for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
 cd
 
-#######################################################################################################################################################
-# 4. Sequence comparison between S.chilense and S.pimpinelifolium (LA1589)
+4. Sequence comparison between S.chilense and S.pimpinelifolium (LA1589)
 # The GO terms fasta file of S.chilense is the query file for the analysis
 
-# Blast similarity search of GO terms in S.chilense against S.pennellii
+# Blast similarity search of GO terms in S.chilense against S.pimpinellifolium
 makeblastdb -in $pimpinellifolium -dbtype 'nucl'
 blastn -db $pimpinellifolium -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cpi/chilense.pimpinellifolium.blastn #204 matches
 
-# Extract chilenseIDs and pennellii IDs to a file
+# Extract chilenseIDs and pimpinellifolium IDs to a file
 awk '{print $1}' $cpi/chilense.pimpinellifolium.blastn > $cpi/chilenseID
 awk '{print $2}' $cpi/chilense.pimpinellifolium.blastn > $cpi/lycopersicoidesID
 
-# Extract chilense and sol IDS in each line to a separate file
+# Extract chilense and pimpinellifolium IDS in each line to a separate file
 cd $cpi
 awk '{print $1"\n"$2 > $1"_"$2 ".txt"}' chilense.pimpinellifolium.blastn
 
@@ -280,18 +260,18 @@ for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} |
 for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
 cd
 
-######################################################################################################################################################## 4. Sequence comparison between S.chilense and S.sitiens
+5. Sequence comparison between S.chilense and S.sitiens
 # The GO terms fasta file of S.chilense is the query file for the analysis
 
-# Blast similarity search of GO terms in S.chilense against S.pennellii
+# Blast similarity search of GO terms in S.chilense against S.sitiens
 makeblastdb -in $sitiens -dbtype 'nucl'
 blastn -db $sitiens -query Results/chilense.GO.terms.salt.drought.IDs.fasta -qcov_hsp_perc 90 -outfmt "6 qseqid sseqid pident evalue qcovs qcovhsp qlen slen qseq sseq stitle" > $cs/chilense.sitiens.blastn #279 matches
 
-# Extract chilenseIDs and pennellii IDs to a file
+# Extract chilenseIDs and sitiens IDs to a file
 awk '{print $1}' $cs/chilense.sitiens.blastn > $cs/chilenseID
 awk '{print $2}' $cs/chilense.sitiens.blastn > $cs/sitiensID
 
-# Extract chilense and sol IDS in each line to a separate file
+# Extract chilense and sitiens IDS in each line to a separate file
 cd $cs
 awk '{print $1"\n"$2 > $1"_"$2 ".txt"}' chilense.sitiens.blastn
 
