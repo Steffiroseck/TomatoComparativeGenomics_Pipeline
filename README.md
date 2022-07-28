@@ -20,13 +20,14 @@ install.packages("dplyr")
 
 if (!require("BiocManager", quietly = TRUE))
 
-    install.packages("BiocManager")
+install.packages("BiocManager")
 
 BiocManager::install("GO.db")
 
 If the softwares used in the pipeline are not already installed, please find the  instructions to install them below;
 
 1. samtools
+
   a.  Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/)
   
   b. Unzip the file
