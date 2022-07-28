@@ -34,7 +34,7 @@ lycopersicum_protein=$wd/genomes/tomato/ITAG4.1_proteins.fasta
 lycopersicoides=$wd/genomes/Slycopersicoides/SlydLA2951_v2.0_cds.fasta
 lycopersicoides_protein=$wd/genomes/Slycopersicoides/SlydLA2951_v2.0_protein.fasta
 pennellii=$wd/genomes/Spennellii/Spenn-v2-cds-annot.fa
-pennellii_protein=$wd/genomes/Spenn-v2-aa-annot.fa
+pennellii_protein=$wd/genomes/Spennellii/Spenn-v2-aa-annot.fa
 pimpinellifolium=$wd/genomes/Spimpinellifolium/Spimpinellifolium_genome.CDS.fa
 pimpinellifolium_protein=$wd/genomes/Spimpinellifolium/Spimpinellifolium_genome.protein.fa
 sitiens=$wd/genomes/Ssitiens/augustus.hints.mrna
@@ -68,22 +68,8 @@ sed -i '/Ontology_id/d' Results/Chilense.GO.IDs.final #89582 GO IDs
 
 # Next, For all the GO IDs extracted from S.chilense, the GO Terms are extrcated. This is done using GO.db (https://doi.org/doi:10.18129/B9.bioc.GO.db) package in R. 
 # R code to extract GO terms for the GO IDs extracted
-R
-library(dplyr)
-library(GO.db)
-data = scan('Results/Chilense.GO.IDs.final', character(), sep='\t')
-result=select(GO.db, keys=data, columns = c("TERM",'ONTOLOGY'), keytype = "GOID")
-result=data.frame(result)
-colnames(result)=c('GO', 'TERM', 'ONTOLOGY')
-# Extract all GO terms with salt or salinity or water or drought
-data_results<-result %>%  filter_all(any_vars(grepl(pattern="(salt|salinity|water|drought)", .)))
-# Remove duplicates
-dup<-data_results[!duplicated(data_results$GO), ]
-write.table(data.frame(result),"Results/chilense.GO.terms.all", quote=F, row.names=F)
-# Important GO terms related to the keywords searched are written to a file
-write.table(data.frame(dup),"Results/chilense.GO.terms.salt.drought", quote=F, row.names=F)
-q()
-n
+
+  Rscript scripts/extract_GO_terms.R
 
 # Extract ID, Gene start and stop from the Interpro.gff3 file for the GO IDs in the chilense.GO.terms.salt.drought
 awk '{print $1}' Results/chilense.GO.terms.salt.drought | sed '1d' > Results/chilense.GO.terms.salt.drought.IDs
@@ -115,9 +101,11 @@ cat Results/chilense.GO.terms.salt.drought.IDs.location | awk 'BEGIN {OFS = "\t"
 
 # Use samtools to extract both the nucleotide and amino acid sequences. The sequences are extracted from the S.chilense genome coding sequence (augustus.with.hints.codingseq) and protein sequence (augustus.with.hints.filtered.aa.fasta) files which are stored in /home/steffi/ folder
 # Nucleotide sequence extraction
-/opt/bix/samtools/1.9/samtools faidx augustus.with.hints.codingseq -r Results/chilense.GOtermsID.regions > Results/chilense.GO.terms.salt.drought.IDs.fasta
+##/opt/bix/samtools/1.9/samtools faidx augustus.with.hints.codingseq -r Results/chilense.GO.terms.regions > Results/chilense.GO.terms.salt.drought.IDs.fasta
+seqkit grep -f Results/chilense.GO.terms.regions augustus.with.hints.codingseq > Results/chilense.GO.terms.salt.drought.IDs.fasta
 # Amino acid sequence extraction
-/opt/bix/samtools/1.9/samtools faidx augustus.with.hints.filtered.aa.fasta -r Results/chilense.GO.terms.regions > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
+##/opt/bix/samtools/1.9/samtools faidx augustus.with.hints.filtered.aa.fasta -r Results/chilense.GO.terms.regions > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
+seqkit grep -f Results/chilense.GO.terms.regions augustus.with.hints.filtered.aa.fasta > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
 
 1. Sequence comparison between S.chilense & S.lycopersicum
 # Blastn is used for performing the sequence similarity search. Only the query coverage per HSP greater than 90% is reported.
