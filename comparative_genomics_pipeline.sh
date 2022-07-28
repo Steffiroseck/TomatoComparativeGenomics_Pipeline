@@ -41,7 +41,7 @@ sitiens=$wd/genomes/Ssitiens/augustus.hints.mrna
 sitiens_protein=$wd/genomes/Ssitiens/sitiens_augustus.hints.aa
 
 # Merge S.chilense and other species's  proteins file
-cat augustus.with.hints.filtered.aa.fasta /home/steffi/genomes/tomato/ITAG4.1_proteins.fasta > chilense_lycopersicum_genome_aa.fa
+cat augustus.with.hints.filtered.aa.fasta $lycopersicum_protein > chilense_lycopersicum_genome_aa.fa
 cat augustus.with.hints.filtered.aa.fasta $lycopersicoides_protein > chilense_lycopersicoides_genome_aa.fa
 cat augustus.with.hints.filtered.aa.fasta $pennellii_protein > chilense_pennellii_genome_aa.fa
 cat augustus.with.hints.filtered.aa.fasta $pimpinellifolium_protein > chilense_pimpinellifolium_genome_aa.fa
