@@ -38,6 +38,7 @@ a. Download the most current version from the Samtools website (http://sourcefor
 b. Unzip the file  
     
 c. In Bash,
+
 	tar xvjf samtools-X.X.tar.bz2  
         
 d. Go into the newly created directory and compile the code by typing make: 
@@ -49,13 +50,11 @@ e. Modify your .bashrc file so that when you type "samtools" it calls the progra
     
 	export PATH=$PATH:/directory/samtools-X.X
         
-#3. NCBI-BLAST v2.13.0
+# 3. NCBI-BLAST v2.13.0
 
-a. This is available at the NCBI ftp site.
-	
-	ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/
+a. This is available at the NCBI ftp site (ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/)
 
-#4. MAFFT v7.490
+# 4. MAFFT v7.490
 
 a. Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)
     
@@ -73,7 +72,9 @@ d. Modify the .bashrc file
     
      	export PATH=$PATH:/directory/mafft-x.x/bin/     
         
-#5. snp-sites. This tool has a git repository and can be directory cloned from the repository
+# 5. snp-sites. 
+
+This tool has a git repository and can be directory cloned from the repository
 
 a. Clone from the git respository. Type in bash;  
 
@@ -91,7 +92,7 @@ c. Modify the .bashrc file
     
     	export PATH=$PATH:/directory/snp-sites/src/  
         
-#6. bcftools
+# 6. bcftools
 
 a. Download the most current version from the bcftools website (https://github.com/samtools/bcftools/releases/download/)
     
@@ -110,7 +111,7 @@ e. Modify your .bashrc file so that when you type "bcftools" it calls the progra
     
     	export PATH=$PATH:/directory/bcftools-X.X
 
-7. seqkit
+# 7. seqkit
 
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
 
