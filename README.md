@@ -39,7 +39,7 @@ Unzip the file
     
 In Bash,
 
-	tar xvjf samtools-X.X.tar.bz2  
+		tar xvjf samtools-X.X.tar.bz2  
         
 Go into the newly created directory and compile the code by typing make: 
     
