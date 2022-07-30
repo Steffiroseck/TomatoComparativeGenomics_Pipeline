@@ -100,7 +100,7 @@ Unzip the file
     
 In Bash,
     
-	tar xvjf bcftools-X.X.tar.bz2  
+		tar xvjf bcftools-X.X.tar.bz2  
         
 Go into the newly created directory and compile the code by typing make: 
     
@@ -132,7 +132,7 @@ In bash,
 
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
 
-   	conda install -c bioconda samtools
-   	conda install -c bioconda bcftools
-   	conda install -c bioconda mafft
-   	conda install -c bioconda seqkit
+   		conda install -c bioconda samtools
+   		conda install -c bioconda bcftools
+   		conda install -c bioconda mafft
+   		conda install -c bioconda seqkit
