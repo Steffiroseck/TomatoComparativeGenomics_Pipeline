@@ -40,6 +40,8 @@
   sitiens=$wd/genomes/Ssitiens/augustus.hints.mrna
   sitiens_protein=$wd/genomes/Ssitiens/sitiens_augustus.hints.aa
 
+# Extract IDs and GO ids from the file
+  tr ";" "\n" < chilense_augustus_with_description.gff3 | grep -E '(ID|Description=)' | cut -d '=' -f 2 | paste - - > chilense.id.description
 
 # Extract the chilenseID , CDS, CDS start, CDS end and  Gene Ontology IDs and write to a file.
 # The 9th column has the GO IDs, which are separated using ";". These GO IDs should be splitted.
