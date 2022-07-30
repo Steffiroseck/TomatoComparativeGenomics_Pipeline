@@ -22,7 +22,7 @@ The initial file for this pipeline is a file which has the gene ids, their start
 
 Please follow the below instructions if the R packages and tools used in this pipeline are not already installed on your system.
 
-#1. GO.db package
+# 1. GO.db package
 
     start R (version "4.2") and enter:
 
@@ -31,14 +31,13 @@ Please follow the below instructions if the R packages and tools used in this pi
         install.packages("BiocManager")
         BiocManager::install("GO.db")
 
-#2. samtools
+# 2. samtools
 
 a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
     
 b. Unzip the file  
     
 c. In Bash,
-
 	tar xvjf samtools-X.X.tar.bz2  
         
 d. Go into the newly created directory and compile the code by typing make: 
