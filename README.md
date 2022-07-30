@@ -78,7 +78,7 @@ This tool has a git repository and can be directory cloned from the repository
 
 Clone from the git respository. Type in bash;  
 
-	git clone https://github.com/sanger-pathogens/snp-sites.git   
+		git clone https://github.com/sanger-pathogens/snp-sites.git   
         
 Install  
     
@@ -123,11 +123,11 @@ Download the Provean source code from http://sourceforge.net/projects/provean/
 
 In bash,
 
-	tar zxvf provean-1.1.5.tar.gz
-	cd provean-1.1.5
-	./configure --prefix=/path/to/where/provean/to/be/installed
-	make
-	make install
+		tar zxvf provean-1.1.5.tar.gz
+		cd provean-1.1.5
+		./configure --prefix=/path/to/where/provean/to/be/installed
+		make
+		make install
 	
 
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
