@@ -44,7 +44,7 @@ In Bash,
 Go into the newly created directory and compile the code by typing make: 
     
 		cd samtools-X.X     
-        make     
+        	make     
         
 Modify your .bashrc file so that when you type "samtools" it calls the program: 
     
@@ -60,7 +60,7 @@ Download the pre-compiled packages from the website (https://mafft.cbrc.jp/align
     
 Untar the package  
     
- 	gunzip -cd mafft-x.x-src.tgz | tar xfv -      
+ 		gunzip -cd mafft-x.x-src.tgz | tar xfv -      
      	cd mafft-x.x/core/   
         
 Compile and install 
