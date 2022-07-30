@@ -18,6 +18,7 @@ The initial file for this pipeline is a file which has the gene ids, their start
 5. Snp-sites
 6. bcftools v1.6 
 7. seqkit
+8. Provean 
 
 Please follow the below instructions if the R packages and tools used in this pipeline are not already installed on your system.
 
@@ -43,12 +44,12 @@ Please follow the below instructions if the R packages and tools used in this pi
         
     d. Go into the newly created directory and compile the code by typing make: 
     
-        cd samtools-1.1     
+        cd samtools-X.X     
         make     
         
     e. Modify your .bashrc file so that when you type "samtools" it calls the program: 
     
-        export PATH=$PATH:/directory/samtools-X.X.XX 
+        export PATH=$PATH:/directory/samtools-X.X
         
 3. NCBI-BLAST v2.13.0
 
@@ -93,6 +94,23 @@ Please follow the below instructions if the R packages and tools used in this pi
         export PATH=$PATH:/directory/snp-sites/src/  
         
 6. bcftools
+
+    a. Download the most current version from the bcftools website (https://github.com/samtools/bcftools/releases/download/)
+    
+    b. Unzip the file  
+    
+    c. In Bash,
+    
+        tar xvjf bcftools-X.X.tar.bz2  
+        
+    d. Go into the newly created directory and compile the code by typing make: 
+    
+        cd bcftools-X.X     
+        make     
+        
+    e. Modify your .bashrc file so that when you type "bcftools" it calls the program: 
+    
+        export PATH=$PATH:/directory/bcftools-X.X
 
 7. seqkit
 
