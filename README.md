@@ -113,6 +113,23 @@ Modify your .bashrc file so that when you type "bcftools" it calls the program:
 
 # 7. seqkit
 
+# 8. Provean
+
+PROVEAN requires the CD-HIT 3.1.2 (or more recent) software, ncbi-nr (non-redundant) protein database and NCBI_BLAST. So make sure these are installed in the system.
+Visit http://weizhong-lab.ucsd.edu/cd-hit/download.php for installation guidelines for CD-HIT
+Current version of nr database is available at the NCBI ftp site ftp://ftp.ncbi.nih.gov/blast/db/
+
+Download the Provean source code from http://sourceforge.net/projects/provean/
+
+In bash,
+
+	tar zxvf provean-1.1.5.tar.gz
+	cd provean-1.1.5
+	./configure --prefix=/path/to/where/provean/to/be/installed
+	make
+	make install
+	
+
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
 
    	conda install -c bioconda samtools
