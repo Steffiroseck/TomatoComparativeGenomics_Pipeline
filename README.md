@@ -1,7 +1,7 @@
 # tomato_comparative_genomics_pipeline
 # Contents
 * Introduction
-* Software Requirements and Installation
+* Prerequisites and Installation
 * Usage
 
 # Introduction
