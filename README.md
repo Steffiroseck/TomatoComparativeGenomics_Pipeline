@@ -34,89 +34,89 @@ Please follow the below instructions if the R packages and tools used in this pi
 
 2. samtools
 
-    a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
+a. Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
     
-    b. Unzip the file  
+b. Unzip the file  
     
-    c. In Bash,
-    
-        tar xvjf samtools-X.X.tar.bz2  
+c. In Bash,
+
+	tar xvjf samtools-X.X.tar.bz2  
         
-    d. Go into the newly created directory and compile the code by typing make: 
+d. Go into the newly created directory and compile the code by typing make: 
     
         cd samtools-X.X     
         make     
         
-    e. Modify your .bashrc file so that when you type "samtools" it calls the program: 
+e. Modify your .bashrc file so that when you type "samtools" it calls the program: 
     
-        export PATH=$PATH:/directory/samtools-X.X
+       export PATH=$PATH:/directory/samtools-X.X
         
 3. NCBI-BLAST v2.13.0
 
-    a. This is available at the NCBI ftp site.
+a. This is available at the NCBI ftp site.
 	
-        ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/
+      ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/
 
 4. MAFFT v7.490
 
-    a. Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)
+a. Download the pre-compiled packages from the website (https://mafft.cbrc.jp/alignment/software/mafft-7.490-with-extensions-src.tgz)
     
-    b. Untar the package  
+b. Untar the package  
     
-        gunzip -cd mafft-x.x-src.tgz | tar xfv -      
-        cd mafft-x.x/core/   
+     gunzip -cd mafft-x.x-src.tgz | tar xfv -      
+     cd mafft-x.x/core/   
         
-    c. Compile and install 
+c. Compile and install 
     
-        make       
-        make install  
+     make       
+     make install  
         
-    d. Modify the .bashrc file 
+d. Modify the .bashrc file 
     
-        export PATH=$PATH:/directory/mafft-x.x/bin/     
+     export PATH=$PATH:/directory/mafft-x.x/bin/     
         
 5. snp-sites. This tool has a git repository and can be directory cloned from the repository
 
-    a. Clone from the git respository. Type in bash;  
+a. Clone from the git respository. Type in bash;  
     
-        git clone https://github.com/sanger-pathogens/snp-sites.git   
+    git clone https://github.com/sanger-pathogens/snp-sites.git   
         
-    b. Install  
+b. Install  
     
-        cd snp-sites/      
-        autoreconf -i -f      
-        ./configure      
-        make      
-        make install  
+    cd snp-sites/      
+    autoreconf -i -f      
+    ./configure      
+    make      
+    make install  
         
-    c. Modify the .bashrc file  
+c. Modify the .bashrc file  
     
-        export PATH=$PATH:/directory/snp-sites/src/  
+    export PATH=$PATH:/directory/snp-sites/src/  
         
 6. bcftools
 
-    a. Download the most current version from the bcftools website (https://github.com/samtools/bcftools/releases/download/)
+a. Download the most current version from the bcftools website (https://github.com/samtools/bcftools/releases/download/)
     
-    b. Unzip the file  
+b. Unzip the file  
     
-    c. In Bash,
+c. In Bash,
     
-        tar xvjf bcftools-X.X.tar.bz2  
+    tar xvjf bcftools-X.X.tar.bz2  
         
-    d. Go into the newly created directory and compile the code by typing make: 
+d. Go into the newly created directory and compile the code by typing make: 
     
-        cd bcftools-X.X     
-        make     
+    cd bcftools-X.X     
+    make     
         
-    e. Modify your .bashrc file so that when you type "bcftools" it calls the program: 
+e. Modify your .bashrc file so that when you type "bcftools" it calls the program: 
     
-        export PATH=$PATH:/directory/bcftools-X.X
+    export PATH=$PATH:/directory/bcftools-X.X
 
 7. seqkit
 
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
 
-    conda install -c bioconda samtools
-    conda install -c bioconda bcftools
-    conda install -c bioconda mafft
-    conda install -c bioconda seqkit
+   conda install -c bioconda samtools
+   conda install -c bioconda bcftools
+   conda install -c bioconda mafft
+   conda install -c bioconda seqkit
