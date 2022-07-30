@@ -43,12 +43,12 @@ In Bash,
         
 Go into the newly created directory and compile the code by typing make: 
     
-	cd samtools-X.X     
+		cd samtools-X.X     
         make     
         
 Modify your .bashrc file so that when you type "samtools" it calls the program: 
     
-	export PATH=$PATH:/directory/samtools-X.X
+		export PATH=$PATH:/directory/samtools-X.X
         
 # 3. NCBI-BLAST v2.13.0
 
