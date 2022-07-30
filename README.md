@@ -10,7 +10,7 @@ The main objective behind creating this pipeline was to find out the genetic cha
 
 The initial file for this pipeline is a file which has the gene ids, their start and end coordinates, gene descriptions, and gene ontologies of _S. chilense_. The pipeline takes this initial file and extracts the Gene Ontolgy (GO) IDs and tries to find the IDs which are related to salinity or drought tolerances using an R package. Next, the genes and their sequences are extracted for the GO IDs having salinity or drought GO terms. These gene sequences are then compared with the whole genome of the domestic species _S.lycopersicum_ to find out sequence differences. 
 
-# Software Requirements and Installation
+# Prerequisites and Installation
 1. R packages - GO.db, dplyr
 2. samtools v1.9
 3. NCBI Blast v2.13.0
@@ -50,7 +50,11 @@ Please follow the below instructions if the R packages and tools used in this pi
     
         export PATH=$PATH:/directory/samtools-X.X.XX 
         
-3. NCBI-BLAST
+3. NCBI-BLAST v2.13.0
+
+    a. This is available at the NCBI ftp site.
+	
+        ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/
 
 4. MAFFT v7.490
 
