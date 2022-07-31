@@ -125,8 +125,8 @@
   awk '{print $2}' $cl/chilense.lycopersicum.blastn > $cl/lycopersicumID
 
 # Get total number of unique ids from the Blastn result
-  sort $cl/chilenseIDs | uniq | wc -l 
-  sort $cl/lycopersicumIDs | uniq | wc -l 
+  sort $cl/chilenseID_lycopersicum | uniq | wc -l 
+  sort $cl/lycopersicumID | uniq | wc -l 
 
 # Find chilenseIDs which had no mappings in S. lycopersicum after Blastn analysis
   awk 'FNR==NR{a[$0]=1;next}!($0 in a)' $cl/chilense.lycopersicum.blastn Results/chilense.GO.terms.regions > $cl/chilenseIDs.not.present.blastn 
