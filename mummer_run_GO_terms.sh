@@ -41,3 +41,9 @@ done
 for i in *.delta;
 do $mummer_path/show-diff -H -q ${i} > ${i}.diff;
 done
+
+# Plot mummer dot plots
+for i in *.filter;
+do  $mummer_path/mummerplot --png --large -p ${i%.filter*} ${i}
+done;
+cd $wd
