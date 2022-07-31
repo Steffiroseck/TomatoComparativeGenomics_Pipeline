@@ -39,5 +39,5 @@ done
  
 # Run show-diff to get the differences between the genome sequences
 for i in *.delta;
-$mummer_path/show-diff -H -q ${i} > ${i}.diff;
+do $mummer_path/show-diff -H -q ${i} > ${i}.diff;
 done
