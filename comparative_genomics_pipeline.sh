@@ -1,3 +1,5 @@
+#!/bash/bin
+
 # path to the working directory
   wd=/home/steffi
 
