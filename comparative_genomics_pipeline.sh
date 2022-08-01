@@ -286,3 +286,7 @@ paste $wd/Results/chilense_lycopersicum/chilenseID_lycopersicum $wd/Results/chil
 # Add column names
 sed  -i '1i chilense_lycopersicum\tchilense_lycopersicoides\tchilense_pennellii\tchilense_pimpinellifolium\tchilense_sitiens' $wd/Results/GO.IDs.all.species
 
+# Run the Rscript to generate the upset plot
+Rscript scripts/create_upsetplot.R
+
+#
