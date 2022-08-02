@@ -147,6 +147,9 @@
 # The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
 
+# Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Sol*}.provean.fa; done
+
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
 
@@ -180,6 +183,9 @@
 
 # The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
+  
+# Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Sopen*}.provean.fa; done
 
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
@@ -210,7 +216,10 @@ cd
 
 # The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
-
+  
+# Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Solyd*}.provean.fa; done
+  
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
 
@@ -240,6 +249,9 @@ cd
 
 # The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
+  
+# Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Sopim*}.provean.fa; done
 
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
@@ -270,6 +282,9 @@ cd
 
 # The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
+  
+# Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_g*}.provean.fa; done
 
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
