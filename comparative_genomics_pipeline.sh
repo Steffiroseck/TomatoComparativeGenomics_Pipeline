@@ -152,7 +152,7 @@
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
 
 # Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
-  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Sol*}.provean.fa; done
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.provean.fa; done
 
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
@@ -189,7 +189,7 @@
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
   
 # Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
-  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Sopen*}.provean.fa; done
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.provean.fa; done
 
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
@@ -222,7 +222,7 @@ cd
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
   
 # Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
-  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Solyd*}.provean.fa; done
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.provean.fa; done
   
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
@@ -255,7 +255,7 @@ cd
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
   
 # Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
-  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_Sopim*}.provean.fa; done
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.provean.fa; done
 
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
@@ -288,7 +288,7 @@ cd
   for i in *.aminoacid.fa ; do awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; done
   
 # Store the S.chilense gene sequence from the above multifasta file to a separate file. (This is used for variant effect prediction analysis)
-  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%_g*}.provean.fa; done
+  for i in *.new.fa; do awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.provean.fa; done
 
 # Now perform MAFFT MSA
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
