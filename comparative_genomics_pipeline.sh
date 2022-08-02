@@ -10,6 +10,10 @@
   bcftools=/opt/bix/bcftools/1.6/bcftools
   mafft=$wd/installations/mafft-linux64/mafftdir/bin/mafft
   snp-sites=$wd/installations/snp-sites/src/snp-sites
+  nrdb=$wd/nr_2.4
+  psiblast=/opt/bix/blast+/2.4.0/bin/psiblast
+  cdhit=/opt/bix/cdhit/4.6.1/cd-hit
+  blastdbcmd=/opt/bix/blast+/2.4.0/bin/blastdbcmd
 
 
 # Assuming that the initial file for analysis is in /home/steffi which is the present working directory.
