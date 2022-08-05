@@ -158,7 +158,7 @@
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
 
 # Run snp-sites on each mafft output file
-  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed; done #21 sequences had no aminoacid changes between chilense and lycopersicum
+  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
 
 # Run the next step to get minoacid changes for PROVEAN analysis
   for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
@@ -195,7 +195,7 @@
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
 
 # Run snp-sites on each mafft output file
-  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed; done #21 sequences had no aminoacid changes between chilense and lycopersicum
+  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
 
 # Run the next step to get minoacid changes for PROVEAN analysis
   for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
@@ -228,7 +228,7 @@ cd
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
 
 # Run snp-sites on each mafft output file
-  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed; done #21 sequences had no aminoacid changes between chilense and lycopersicum
+  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1; done #21 sequences had no aminoacid changes between chilense and lycopersicum
 
 # Run the next step to get minoacid changes for PROVEAN analysis
   for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
@@ -261,7 +261,7 @@ cd
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
 
 # Run snp-sites on each mafft output file
-  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed; done #21 sequences had no aminoacid changes between chilense and lycopersicum
+  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
 
 # Run the next step to get minoacid changes for PROVEAN analysis
   for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
@@ -294,7 +294,7 @@ cd
   for i in *.new.fa; do mafft ${i} > ${i%.new.fa*}.mafft_out.fa; done
 
 # Run snp-sites on each mafft output file
-  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed; done #21 sequences had no aminoacid changes between chilense and lycopersicum
+  for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
 
 # Run the next step to get minoacid changes for PROVEAN analysis
   for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
