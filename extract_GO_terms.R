@@ -6,9 +6,9 @@
 
   setwd("/home/steffi/")
   data = scan('Results/Chilense.GO.IDs.final', character(), sep='\t')
-  result=select(GO.db, keys=data, columns = c("TERM",'ONTOLOGY'), keytype = "GOID")
+  result=select(GO.db, keys=data, columns = c("TERM"), keytype = "GOID")
   result=data.frame(result)
-  colnames(result)=c('GO', 'TERM', 'ONTOLOGY')
+  colnames(result)=c('GO', 'TERM')
 
 # Extract all GO terms with salt or salinity or water or drought
   data_results<-result %>%  filter_all(any_vars(grepl(pattern="(salt|salinity|water|drought)", .)))
