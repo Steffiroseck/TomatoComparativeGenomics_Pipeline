@@ -159,12 +159,6 @@
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; do python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; done
-
-# Run snp-sites on each mafft output file
-  #for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
-
-# Run the next step to get minoacid changes for PROVEAN analysis
-  #for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
   cd
 
 # Run PROVEAN analysis
@@ -199,13 +193,7 @@
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; do python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; done
-
-# Run snp-sites on each mafft output file
-  #for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
-
-# Run the next step to get minoacid changes for PROVEAN analysis
-  #for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
-cd
+  cd
 
 3. Sequence comparison between S.chilense and S.lycopersicoides
 # The GO terms fasta file of S.chilense is the query file for the analysis
@@ -235,12 +223,6 @@ cd
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; do python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; done
-
-# Run snp-sites on each mafft output file
-  #for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1; done #21 sequences had no aminoacid changes between chilense and lycopersicum
-
-# Run the next step to get minoacid changes for PROVEAN analysis
-  #for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
   cd
 
 4. Sequence comparison between S.chilense and S.pimpinelifolium (LA1589)
@@ -271,12 +253,6 @@ cd
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; do python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; done
-
-# Run snp-sites on each mafft output file
-  #for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
-
-# Run the next step to get minoacid changes for PROVEAN analysis
-  #for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
   cd
 
 5. Sequence comparison between S.chilense and S.sitiens
@@ -307,12 +283,6 @@ cd
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; do python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; done
-
-# Run snp-sites on each mafft output file
-  #for i in *.mafft_out.fa; do snp-sites -v -o ${i%.mafft_out.fa*}.snp-sites ${i} | echo ${i} completed >> snp-sites-log 2>&1 ; done #21 sequences had no aminoacid changes between chilense and lycopersicum
-
-# Run the next step to get minoacid changes for PROVEAN analysis
-  #for i in *.snp-sites; do /opt/bix/bcftools/1.6/bcftools query -f '%REF%POS%ALT\n' ${i} > ${i%.snp-sites*}.proveaninput; done
   cd
   
 # Generate an Upset plot to get the gene IDs intersections between different species in the study. 
