@@ -18,7 +18,7 @@ The initial file for this pipeline is a file which has the gene ids, their start
 5. Snp-sites
 6. bcftools v1.6 
 7. seqkit
-8. Provean 
+8. Provean v1.1.5
 
 Please follow the below instructions if the R packages and tools used in this pipeline are not already installed on your system.
 
