@@ -82,7 +82,7 @@
   grep "GO:0071472" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0071472"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:1901000" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:1901000"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:1901001" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:1901001"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0016717" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0016717"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
+  #grep "GO:0016717" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0016717"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:0042631" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0042631"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:0042538" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0042538"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:0009819" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0009819"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
@@ -92,7 +92,7 @@
   grep "GO:0080148" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0080148"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:2000070" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:2000070"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:0009415" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0009415"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0050521" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0050521"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
+  #grep "GO:0050521" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0050521"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
   grep "GO:0050891" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0050891"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
 
 # Extract sequences from file. Inorder to do this, the file with GO IDs should be in a correct format. To get it, run the code below;
