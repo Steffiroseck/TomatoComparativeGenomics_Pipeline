@@ -157,16 +157,16 @@
   awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
   done
 
+# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
+  for i in *.new.fa; 
+  do 
+  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
+  done
+  
 # Now perform MAFFT MSA
   for i in *.new.fa; 
   do 
   mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above MSA file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.mafft_out.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.mafft_out.fa*}.proveaninput.fa; 
   done
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
@@ -209,16 +209,16 @@
   awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
   done
 
+# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
+  for i in *.new.fa; 
+  do 
+  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
+  done
+  
 # Now perform MAFFT MSA
   for i in *.new.fa; 
   do 
   mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-  
-# Store the S.chilense gene sequence from the above MSA file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.mafft_out.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.mafft_out.fa*}.proveaninput.fa; 
   done
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
@@ -254,16 +254,16 @@
   awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
   done
 
+# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
+  for i in *.new.fa; 
+  do 
+  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
+  done
+  
 # Now perform MAFFT MSA
   for i in *.new.fa; 
   do 
   mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above MSA file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.mafft_out.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.mafft_out.fa*}.proveaninput.fa; 
   done
   
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
@@ -299,16 +299,16 @@
   awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
   done
 
+# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
+  for i in *.new.fa; 
+  do 
+  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
+  done
+  
 # Now perform MAFFT MSA
   for i in *.new.fa; 
   do 
   mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above MSA file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.mafft_out.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.mafft_out.fa*}.proveaninput.fa; 
   done
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
@@ -343,17 +343,17 @@
   do 
   awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
   done
+
+# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
+  for i in *.new.fa; 
+  do 
+  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
+  done
   
 # Now perform MAFFT MSA
   for i in *.new.fa; 
   do 
   mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above MSA file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.mafft_out.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.mafft_out.fa*}.proveaninput.fa; 
   done
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
