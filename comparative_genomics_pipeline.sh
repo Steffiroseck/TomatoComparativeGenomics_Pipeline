@@ -170,10 +170,11 @@
   done
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
-  for i in *.mafft_out.fa;
+  for i in *.mafft_out.fa; 
   do 
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; done
-  cd
+  echo ${i} processing....
+  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
+  done
 
 # Run PROVEAN analysis
   for i in *.proveaninput.fa;
@@ -224,10 +225,18 @@
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; 
   do 
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; 
+  echo ${i} processing....
+  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
   done
-  cd
 
+# Run PROVEAN analysis
+  for i in *.proveaninput.fa;
+  do 
+  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  echo ${cmd}
+  eval ${cmd}
+  done
+  
 3. Sequence comparison between S.chilense and S.lycopersicoides
 # The GO terms fasta file of S.chilense is the query file for the analysis
 # Blast similarity search of GO terms in S.chilense against S.lycopersicoides
@@ -269,9 +278,17 @@
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; 
   do 
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; 
+  echo ${i} processing....
+  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
   done
-  cd
+
+# Run PROVEAN analysis
+  for i in *.proveaninput.fa;
+  do 
+  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  echo ${cmd}
+  eval ${cmd}
+  done
 
 4. Sequence comparison between S.chilense and S.pimpinelifolium (LA1589)
 # The GO terms fasta file of S.chilense is the query file for the analysis
@@ -314,9 +331,17 @@
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; 
   do 
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; 
+  echo ${i} processing....
+  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
   done
-  cd
+
+# Run PROVEAN analysis
+  for i in *.proveaninput.fa;
+  do 
+  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  echo ${cmd}
+  eval ${cmd}
+  done
 
 5. Sequence comparison between S.chilense and S.sitiens
 # The GO terms fasta file of S.chilense is the query file for the analysis
@@ -359,9 +384,17 @@
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
   for i in *.mafft_out.fa; 
   do 
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} | sed -r 's/\s+//g' > ${i%.mafft_out.fa*}.var; 
+  echo ${i} processing....
+  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
   done
-  cd
+
+# Run PROVEAN analysis
+  for i in *.proveaninput.fa;
+  do 
+  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  echo ${cmd}
+  eval ${cmd}
+  done
   
 # Generate an Upset plot to get the gene IDs intersections between different species in the study. 
 # A data table needs to be created with all the S.chilense IDs matched to the different species in the study. Once the data table is created, the R script to generate upset plot is saved as a separate script.
