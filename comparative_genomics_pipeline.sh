@@ -398,14 +398,18 @@
   
 # Generate an Upset plot to get the gene IDs intersections between different species in the study. 
 # A data table needs to be created with all the S.chilense IDs matched to the different species in the study. Once the data table is created, the R script to generate upset plot is saved as a separate script.
-paste $wd/Results/chilense_lycopersicum/chilenseID_lycopersicum $wd/Results/chilense_lycopersicoides/chilenseID_lycopersicoides $wd/Results/chilense_pennellii/chilenseID_pennellii $wd/Results/chilense_pimpinellifolium/chilenseID_pimpinellifolium $wd/Results/chilense_sitiens/chilenseID_sitiens > $wd/Results/GO.IDs.all.species
+  paste $wd/Results/chilense_lycopersicum/chilenseID_lycopersicum $wd/Results/chilense_lycopersicoides/chilenseID_lycopersicoides $wd/Results/chilense_pennellii/chilenseID_pennellii $wd/Results/chilense_pimpinellifolium/chilenseID_pimpinellifolium $wd/Results/chilense_sitiens/chilenseID_sitiens > $wd/Results/GO.IDs.all.species
 
 # Add column names
-sed  -i '1i chilense_lycopersicum\tchilense_lycopersicoides\tchilense_pennellii\tchilense_pimpinellifolium\tchilense_sitiens' $wd/Results/GO.IDs.all.species
+  sed  -i '1i chilense_lycopersicum\tchilense_lycopersicoides\tchilense_pennellii\tchilense_pimpinellifolium\tchilense_sitiens' $wd/Results/GO.IDs.all.species
 
 # Run the Rscript to generate the upset plot
-Rscript scripts/create_upsetplot.R
+  Rscript scripts/create_upsetplot.R
 
 # Generate a phylogenetic tree of all the Blast hits in lycopersicum, lycopersicoides, pennellii, pimpinellifolium, and sitiens against chilense GO terms
 # Extract the fasta sequences of the IDs in the Blast hits
-seqkit grep -f $cl/lycopersicumID /home/steffi/genomes/tomato/ITAG4.1_CDS.fasta > lycopersicumID.fasta
+  seqkit grep -f $cl/lycopersicumID $lycopersicum > $cl/lycopersicumID.fasta
+  seqkit grep -f $cly/lycopersicoidesID $lycopersicoides > $cly/lycopersicoidesID.fasta
+  seqkit grep -f $cp/pennelliiID $pennellii > $cp/pennelliiID.fasta
+  seqkit grep -f $cpi/pimpinellifoliumID $pimpinellifolium > $cpi/pimpinellifoliumID.fasta
+  seqkit grep -f $cs/sitiensID $sitiens > $cs/sitiensID.fasta
