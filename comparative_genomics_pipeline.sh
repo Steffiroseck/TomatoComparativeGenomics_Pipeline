@@ -406,4 +406,6 @@ sed  -i '1i chilense_lycopersicum\tchilense_lycopersicoides\tchilense_pennellii\
 # Run the Rscript to generate the upset plot
 Rscript scripts/create_upsetplot.R
 
-#
+# Generate a phylogenetic tree of all the Blast hits in lycopersicum, lycopersicoides, pennellii, pimpinellifolium, and sitiens against chilense GO terms
+# Extract the fasta sequences of the IDs in the Blast hits
+seqkit grep -f $cl/lycopersicumID /home/steffi/genomes/tomato/ITAG4.1_CDS.fasta > lycopersicumID.fasta
