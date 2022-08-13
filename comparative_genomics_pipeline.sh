@@ -181,6 +181,7 @@
   echo ${cmd}
   eval ${cmd}
   done
+  cd
 
 2. Sequence comparison between S.chilense and S.pennellii
 # The GO terms fasta file of S.chilense is the query file for the analysis
@@ -234,6 +235,7 @@
   echo ${cmd}
   eval ${cmd}
   done
+  cd
   
 3. Sequence comparison between S.chilense and S.lycopersicoides
 # The GO terms fasta file of S.chilense is the query file for the analysis
@@ -287,6 +289,7 @@
   echo ${cmd}
   eval ${cmd}
   done
+  cd 
 
 4. Sequence comparison between S.chilense and S.pimpinelifolium (LA1589)
 # The GO terms fasta file of S.chilense is the query file for the analysis
@@ -340,7 +343,8 @@
   echo ${cmd}
   eval ${cmd}
   done
-
+  cd
+  
 5. Sequence comparison between S.chilense and S.sitiens
 # The GO terms fasta file of S.chilense is the query file for the analysis
 # Blast similarity search of GO terms in S.chilense against S.sitiens
@@ -393,6 +397,7 @@
   echo ${cmd}
   eval ${cmd}
   done
+  cd
   
 # Generate an Upset plot to get the gene IDs intersections between different species in the study. 
 # A data table needs to be created with all the S.chilense IDs matched to the different species in the study. Once the data table is created, the R script to generate upset plot is saved as a separate script.
@@ -402,12 +407,14 @@
   sed  -i '1i chilense_lycopersicum\tchilense_lycopersicoides\tchilense_pennellii\tchilense_pimpinellifolium\tchilense_sitiens' $wd/Results/GO.IDs.all.species
 
 # Run the Rscript to generate the upset plot
-  Rscript scripts/create_upsetplot.R
+  Rscript $wd/scripts/create_upsetplot.R
 
 # Generate a phylogenetic tree of all the Blast hits in lycopersicum, lycopersicoides, pennellii, pimpinellifolium, and sitiens against chilense GO terms
 # Extract the fasta sequences of the IDs in the Blast hits
-  seqkit grep -f $cl/lycopersicumID $lycopersicum > $cl/lycopersicumID.fasta
-  seqkit grep -f $cly/lycopersicoidesID $lycopersicoides > $cly/lycopersicoidesID.fasta
-  seqkit grep -f $cp/pennelliiID $pennellii > $cp/pennelliiID.fasta
-  seqkit grep -f $cpi/pimpinellifoliumID $pimpinellifolium > $cpi/pimpinellifoliumID.fasta
-  seqkit grep -f $cs/sitiensID $sitiens > $cs/sitiensID.fasta
+  seqkit grep -f $cl/lycopersicumID $lycopersicum | awk 'BEGIN {print ">S.lycopersicum"};!/^>/{print}' > $cl/lycopersicumID.fasta
+  seqkit grep -f $cly/lycopersicoidesID $lycopersicoides | awk 'BEGIN {print ">S.lycopersicoides"};!/^>/{print}' > $cly/lycopersicoidesID.fasta
+  seqkit grep -f $cp/pennelliiID $pennellii | awk 'BEGIN {print ">S.pennelli"};!/^>/{print}' > $cp/pennelliiID.fasta
+  seqkit grep -f $cpi/pimpinellifoliumID $pimpinellifolium | awk 'BEGIN {print ">S.pimpinellifolium"};!/^>/{print}' > $cpi/pimpinellifoliumID.fasta
+  seqkit grep -f $cs/sitiensID $sitiens | awk 'BEGIN {print ">S.sitiens"};!/^>/{print}' > $cs/sitiensID.fasta
+  
+  
