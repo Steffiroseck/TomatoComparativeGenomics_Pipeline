@@ -12,7 +12,7 @@ The initial file for this pipeline is a file which has the gene ids, their start
 
 # Prerequisites and Installation
 1. R packages - GO.db, dplyr
-2. seqkit
+2. Seqkit v2.3.0
 3. NCBI Blast v2.13.0
 4. MAFFT v7.490 
 5. Provean v1.1.5
@@ -28,7 +28,7 @@ Please follow the below instructions if the R packages and tools used in this pi
         install.packages("BiocManager")
         BiocManager::install("GO.db")
         
-# 2. seqkit
+# 2. Seqkit v2.3.0
 
 # 3. NCBI-BLAST v2.13.0
 
