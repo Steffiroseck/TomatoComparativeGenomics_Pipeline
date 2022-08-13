@@ -12,13 +12,10 @@ The initial file for this pipeline is a file which has the gene ids, their start
 
 # Prerequisites and Installation
 1. R packages - GO.db, dplyr
-2. samtools v1.9
+2. seqkit
 3. NCBI Blast v2.13.0
 4. MAFFT v7.490 
-5. Snp-sites
-6. bcftools v1.6 
-7. seqkit
-8. Provean v1.1.5
+5. Provean v1.1.5
 
 Please follow the below instructions if the R packages and tools used in this pipeline are not already installed on your system.
 
@@ -30,26 +27,9 @@ Please follow the below instructions if the R packages and tools used in this pi
         if (!require("BiocManager", quietly = TRUE))
         install.packages("BiocManager")
         BiocManager::install("GO.db")
-
-# 2. samtools
-
-Download the most current version from the Samtools website (http://sourceforge.net/projects/samtools/files/samtools/) 
-    
-Unzip the file  
-    
-In Bash,
-
-		tar xvjf samtools-X.X.tar.bz2  
         
-Go into the newly created directory and compile the code by typing make: 
-    
-		cd samtools-X.X     
-        	make     
-        
-Modify your .bashrc file so that when you type "samtools" it calls the program: 
-    
-		export PATH=$PATH:/directory/samtools-X.X
-        
+# 2. seqkit
+
 # 3. NCBI-BLAST v2.13.0
 
 This is available at the NCBI ftp site (ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/)
@@ -71,49 +51,8 @@ Compile and install
 Modify the .bashrc file 
     
      	export PATH=$PATH:/directory/mafft-x.x/bin/     
-        
-# 5. snp-sites. 
 
-This tool has a git repository and can be directory cloned from the repository
-
-Clone from the git respository. Type in bash;  
-
-		git clone https://github.com/sanger-pathogens/snp-sites.git   
-        
-Install  
-    
-    	cd snp-sites/      
-    	autoreconf -i -f      
-    	./configure      
-    	make      
-    	make install  
-        
-Modify the .bashrc file  
-    
-    	export PATH=$PATH:/directory/snp-sites/src/  
-        
-# 6. bcftools
-
-Download the most current version from the bcftools website (https://github.com/samtools/bcftools/releases/download/)
-    
-Unzip the file  
-    
-In Bash,
-    
-		tar xvjf bcftools-X.X.tar.bz2  
-        
-Go into the newly created directory and compile the code by typing make: 
-    
-    	cd bcftools-X.X     
-    	make     
-        
-Modify your .bashrc file so that when you type "bcftools" it calls the program: 
-    
-    	export PATH=$PATH:/directory/bcftools-X.X
-
-# 7. seqkit
-
-# 8. Provean
+# 5. Provean
 
 PROVEAN requires the CD-HIT 3.1.2 (or more recent) software, ncbi-nr (non-redundant) protein database and NCBI_BLAST. So make sure these are installed in the system.
 Visit http://weizhong-lab.ucsd.edu/cd-hit/download.php for installation guidelines for CD-HIT.
@@ -132,7 +71,5 @@ In bash,
 
 Alternatively, if your system has Anaconda or Miniconda installed, a conda installation of some of the softwares can be done. 
 
-   		conda install -c bioconda samtools
-   		conda install -c bioconda bcftools
    		conda install -c bioconda mafft
    		conda install -c bioconda seqkit
