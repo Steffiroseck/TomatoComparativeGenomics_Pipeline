@@ -45,67 +45,44 @@
   sitiens_protein=$wd/genomes/Ssitiens/sitiens_augustus.hints.aa
 
 # Extract IDs and gene descriptions from the file
-  tr ";" "\n" < chilense_augustus_with_description.gff3 | grep -E '(ID|Description=)' | cut -d '=' -f 2 | paste - - |  tr ' ' '_' > chilense.id.description
+  tr ";" "\n" < $wd/chilense_augustus_with_description.gff3 | grep -E '(ID|Description=)' | cut -d '=' -f 2 | paste - - |  tr ' ' '_' > $wd/chilense.id.description
 
 # Extract the chilenseID , CDS, CDS start, CDS end and  Gene Ontology IDs and write to a file.
 # The 9th column has the GO IDs, which are separated using ";". These GO IDs should be splitted.
-  cat chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$3,$4,$5, $9}' > Results/Chilense.augustus.interpro.GO.IDs  
+  cat $wd/chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$3,$4,$5, $9}' > $wd/Results/Chilense.augustus.interpro.GO.IDs  
 
 # Split 9th column based on ;. This will make GO IDs in a separate column separated by tab
-  sed 's/[; ]\+/\t/g' Results/Chilense.augustus.interpro.GO.IDs > Results/Chilense.augustus.interpro.GO.IDs.split
+  sed 's/[; ]\+/\t/g' $wd/Results/Chilense.augustus.interpro.GO.IDs > $wd/Results/Chilense.augustus.interpro.GO.IDs.split
 
 # Print only GO IDS and write it to a file. The output file will now look like each row with GO IDs corresponding to it separated by comma.
-  awk '{for (i=1;i<=NF;i++){if ($i ~/Ontology_id/) {print $i}}}' Results/Chilense.augustus.interpro.GO.IDs.split > Results/Chilense.GO.IDs
+  awk '{for (i=1;i<=NF;i++){if ($i ~/Ontology_id/) {print $i}}}' $wd/Results/Chilense.augustus.interpro.GO.IDs.split > $wd/Results/Chilense.GO.IDs
 
 # Split the comma separated values in each column to multiple rows
 # split the IDs based on "="
-  tr '=' '\n' < Results/Chilense.GO.IDs > Results/Chilense.GO.IDs.1 
+  tr '=' '\n' < $wd/Results/Chilense.GO.IDs > $wd/Results/Chilense.GO.IDs.1 
 
 # split based on .,.
-  tr ',' '\n' < Results/Chilense.GO.IDs.1 > Results/Chilense.GO.IDs.final
+  tr ',' '\n' < $wd/Results/Chilense.GO.IDs.1 > $wd/Results/Chilense.GO.IDs.final
 
 # Now, remove .ontology_id. from the  file
-  sed -i '/Ontology_id/d' Results/Chilense.GO.IDs.final
+  sed -i '/Ontology_id/d' $wd/Results/Chilense.GO.IDs.final
 
 # Next, For all the GO IDs extracted from S.chilense, the GO Terms are extrcated. 
 # R code to extract GO terms for the GO IDs extracted.
 # This r script will save the GO IDs with salt/drought keywords to chilense.GO.terms.salt.drought file
-  Rscript scripts/extract_GO_terms.R
+  Rscript $wd/scripts/extract_GO_terms.R
 
 # Extract ID, Gene start and stop from the Interpro.gff3 file for the GO IDs in the chilense.GO.terms.salt.drought
-  awk '{print $1}' Results/chilense.GO.terms.salt.drought | sed '1d' > Results/chilense.GO.terms.salt.drought.IDs
+  awk '{print $1}' $wd/Results/chilense.GO.terms.salt.drought | sed '1d' > $wd/Results/chilense.GO.terms.salt.drought.IDs
 
-  grep "GO:1901002" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:1901002"}' > Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0009414" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0009414"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0009651" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0009651"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0071472" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0071472"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:1901000" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:1901000"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:1901001" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:1901001"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  #grep "GO:0016717" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0016717"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0042631" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0042631"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0042538" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0042538"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0009819" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0009819"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0006833" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0006833"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0015250" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0015250"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:1902584" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:1902584"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0080148" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0080148"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:2000070" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:2000070"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0009415" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0009415"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  #grep "GO:0050521" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0050521"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-  grep "GO:0050891" chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$4,$5, "GO:0050891"}' >> Results/chilense.GO.terms.salt.drought.IDs.location
-
-# Extract sequences from file. Inorder to do this, the file with GO IDs should be in a correct format. To get it, run the code below;
-#cat Results/chilense.GO.terms.salt.drought.IDs.location | awk 'BEGIN {OFS = "\t"};  { printf("%s:%d-%d\n",$1,$2,$3)}' > Results/regions.txt
-
-# Extract full length gene sequences of S.chilense based on the IDs found to be involved in salt or drought tolerances
-  cat Results/chilense.GO.terms.salt.drought.IDs.location | awk 'BEGIN {OFS = "\t"};  { printf("%s\n",$1,$2,$3)}' > Results/chilense.GO.terms.regions
+# Extract the gene IDs corresponding to each of the GO IDs related to salt/drought keywords
+  grep -f $wd/Results/chilense.GO.terms.salt.drought.IDs <$wd/chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1}' > $wd/Results/chilense.GO.terms.salt.drought.IDs.genes
 
 # Extract both the nucleotide and amino acid sequences. The sequences are extracted from the S.chilense genome coding sequence (augustus.with.hints.codingseq) and protein sequence (augustus.with.hints.filtered.aa.fasta) files which are stored in /home/steffi/ folder
 # Nucleotide sequence extraction
-  seqkit grep -f Results/chilense.GO.terms.regions augustus.with.hints.codingseq > Results/chilense.GO.terms.salt.drought.IDs.fasta
-
+  seqkit grep -f $wd/Results/chilense.GO.terms.salt.drought.IDs.genes $wd/augustus.with.hints.codingseq > $wd/Results/chilense.GO.terms.salt.drought.IDs.fasta
 # Amino acid sequence extraction
-  seqkit grep -f Results/chilense.GO.terms.regions augustus.with.hints.filtered.aa.fasta > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
+  seqkit grep -f $wd/Results/chilense.GO.terms.salt.drought.IDs.genes $wd/augustus.with.hints.filtered.aa.fasta > $wd/Results/chilense.GO.terms.salt.drought.IDs.aa.fa
 
 # Merge S.chilense and other species proteins file
   cat augustus.with.hints.filtered.aa.fasta $lycopersicum_protein > chilense_lycopersicum_genome_aa.fa
