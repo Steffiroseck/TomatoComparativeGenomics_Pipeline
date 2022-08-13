@@ -68,7 +68,8 @@
   sed -i '/Ontology_id/d' Results/Chilense.GO.IDs.final
 
 # Next, For all the GO IDs extracted from S.chilense, the GO Terms are extrcated. 
-# R code to extract GO terms for the GO IDs extracted
+# R code to extract GO terms for the GO IDs extracted.
+# This r script will save the GO IDs with salt/drought keywords to chilense.GO.terms.salt.drought file
   Rscript scripts/extract_GO_terms.R
 
 # Extract ID, Gene start and stop from the Interpro.gff3 file for the GO IDs in the chilense.GO.terms.salt.drought
