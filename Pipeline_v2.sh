@@ -135,39 +135,39 @@
   awk '{print $1"\n"$2 > $1"_"$2 ".txt"}' chilense.sitiens.blastn
 
 
-# Extract the aminoacid sequences
-  for i in $cl/*.txt; 
+# Extract the aminoacid sequences (7 minutes to finish)
+  for i in $cl/*.txt $cp/*.txt $cly/*.txt $cpi/*.txt $cs/*.txt; 
   do 
-  seqkit grep -f ${i} /home/steffi/chilense_lycopersicum_genome_aa.fa > ${i%.txt*}.aminoacid.fa; 
+  seqkit grep -f ${i} $wd/chilense_lycopersicum_genome_aa.fa $wd/chilense_pennellii_genome_aa.fa $wd/chilense_lycopersicoides_genome_aa.fa $wd/chilense_pimpinellifolium_genome_aa.fa $wd/chilense_sitiens_genome_aa.fa > ${i%.txt*}.aminoacid.fa; 
   done
 
 # The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
-  for i in *.aminoacid.fa ; 
+  for i in $cl/*.aminoacid.fa $cp/*.aminoacid.fa $cly/*.aminoacid.fa $cpi/*.aminoacid.fa $cs/*.aminoacid.fa; 
   do 
   awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
   done
 
 # Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.new.fa; 
+  for i in $cl/*.new.fa $cp/*.new.fa $cly/*.new.fa $cpi/*.new.fa $cs/*.new.fa; 
   do 
   awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
   done
   
-# Now perform MAFFT MSA
-  for i in *.new.fa; 
+# Now perform MAFFT MSA (7 minutes to finish)
+  for i in $cl/*.new.fa $cp/*.new.fa $cly/*.new.fa $cpi/*.new.fa $cs/*.new.fa; 
   do 
   mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
   done
 
 # Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
-  for i in *.mafft_out.fa; 
+  for i in $cl/*.mafft_out.fa $cp/*.mafft_out.fa $cly/*.mafft_out.fa $cpi/*.mafft_out.fa $cs/*.mafft_out.fa; 
   do 
   echo ${i} processing....
   python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
-  for i in *.proveaninput.fa;
+  for i in $cl/*.proveaninput.fa $cp/*.proveaninput.fa $cly/*.proveaninput.fa $cpi/*.proveaninput.fa $cs/*.proveaninput.fa;
   do 
   cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
   echo ${cmd}
@@ -175,203 +175,6 @@
   done
   cd
 
-2. Sequence comparison between S.chilense and S.pennellii
-# The GO terms fasta file of S.chilense is the query file for the analysis
-# Blast similarity search of GO terms in S.chilense against S.pennellii
-  
-  
-# Extract chilenseIDs and pennellii IDs to a file
-  
-# Extract chilense and pennellii IDS in each line to a separate file
-  cd $cp
-  awk '{print $1"\n"$2 > $1"_"$2 ".txt"}' chilense.pennellii.blastn
-
-# Extract the aminoacid sequences
-  for i in *.txt; 
-  do 
-  seqkit grep -f ${i} /home/steffi/chilense_pennellii_genome_aa.fa > ${i%.txt*}.aminoacid.fa; 
-  done
-
-# The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
-  for i in *.aminoacid.fa ; 
-  do 
-  awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.new.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
-  done
-  
-# Now perform MAFFT MSA
-  for i in *.new.fa; 
-  do 
-  mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-
-# Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
-  for i in *.mafft_out.fa; 
-  do 
-  echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
-  done
-
-# Run PROVEAN analysis
-  for i in *.proveaninput.fa;
-  do 
-  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
-  echo ${cmd}
-  eval ${cmd}
-  done
-  cd
-  
-3. Sequence comparison between S.chilense and S.lycopersicoides
-# The GO terms fasta file of S.chilense is the query file for the analysis
-# Blast similarity search of GO terms in S.chilense against S.lycopersicoides
-
-  
-# Extract chilenseIDs and lycopersicoides IDs to a file
-  
-# Extract chilense and lycopersicoides IDS in each line to a separate file
-  
-# Extract the aminoacid sequences
-  for i in *.txt; 
-  do 
-  seqkit grep -f ${i} $wd/chilense_lycopersicoides_genome_aa.fa > ${i%.txt*}.aminoacid.fa; 
-  done
-
-# The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
-  for i in *.aminoacid.fa ; 
-  do 
-  awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.new.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
-  done
-  
-# Now perform MAFFT MSA
-  for i in *.new.fa; 
-  do 
-  mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-  
-# Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
-  for i in *.mafft_out.fa; 
-  do 
-  echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
-  done
-
-# Run PROVEAN analysis
-  for i in *.proveaninput.fa;
-  do 
-  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
-  echo ${cmd}
-  eval ${cmd}
-  done
-  cd 
-
-4. Sequence comparison between S.chilense and S.pimpinelifolium (LA1589)
-# The GO terms fasta file of S.chilense is the query file for the analysis
-# Blast similarity search of GO terms in S.chilense against S.pimpinellifolium
- 
-# Extract chilenseIDs and pimpinellifolium IDs to a file
-  
-# Extract chilense and pimpinellifolium IDS in each line to a separate file
-  
-# Extract the aminoacid sequences
-  for i in *.txt; 
-  do 
-  seqkit grep -f ${i} $wd/chilense_pimpinellifolium_genome_aa.fa > ${i%.txt*}.aminoacid.fa; 
-  done
-
-# The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
-  for i in *.aminoacid.fa; 
-  do 
-  awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.new.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
-  done
-  
-# Now perform MAFFT MSA
-  for i in *.new.fa; 
-  do 
-  mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-
-# Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
-  for i in *.mafft_out.fa; 
-  do 
-  echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
-  done
-
-# Run PROVEAN analysis
-  for i in *.proveaninput.fa;
-  do 
-  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
-  echo ${cmd}
-  eval ${cmd}
-  done
-  cd
-  
-5. Sequence comparison between S.chilense and S.sitiens
-# The GO terms fasta file of S.chilense is the query file for the analysis
-# Blast similarity search of GO terms in S.chilense against S.sitiens
-  
-
-# Extract chilenseIDs and sitiens IDs to a file
-  
-# Extract chilense and sitiens IDS in each line to a separate file
-  
-# Extract the aminoacid sequences
-  for i in *.txt; 
-  do 
-  seqkit grep -f ${i} $wd/chilense_sitiens_genome_aa.fa > ${i%.txt*}.aminoacid.fa; 
-  done
-
-# The above command outputs multiple sequences in a single file. This is because, blastn outputs multiple hits for a single query sequence search. The multiple hits identified were duplicates. hence it needs to be removed, so that, each fasta file has no duplicate headers and no duplicate fasta sequences.
-  for i in *.aminoacid.fa; 
-  do 
-  awk '/^>/{f=!d[$1];d[$1]=1}f' ${i} > ${i%.aminoacid.fa*}.new.fa; 
-  done
-
-# Store the S.chilense gene sequence from the above file to a separate file. (This is used for variant effect prediction analysis)  
-  for i in *.new.fa; 
-  do 
-  awk '/^>/{if(N)exit;++N;} {print;}' ${i} > ${i%.new.fa*}.proveaninput.fa; 
-  done
-  
-# Now perform MAFFT MSA
-  for i in *.new.fa; 
-  do 
-  mafft ${i} > ${i%.new.fa*}.mafft_out.fa; 
-  done
-
-# Extract the positions of variants, insertions, and deletions from the MSA file. Remove thw whitespaces from file so that output is compatible for running PROVEAN. 
-  for i in *.mafft_out.fa; 
-  do 
-  echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
-  done
-
-# Run PROVEAN analysis
-  for i in *.proveaninput.fa;
-  do 
-  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
-  echo ${cmd}
-  eval ${cmd}
-  done
-  cd
-  
 # Generate an Upset plot to get the gene IDs intersections between different species in the study. 
 # A data table needs to be created with all the S.chilense IDs matched to the different species in the study. Once the data table is created, the R script to generate upset plot is saved as a separate script.
   paste $wd/Results/chilense_lycopersicum/chilenseID_lycopersicum $wd/Results/chilense_lycopersicoides/chilenseID_lycopersicoides $wd/Results/chilense_pennellii/chilenseID_pennellii $wd/Results/chilense_pimpinellifolium/chilenseID_pimpinellifolium $wd/Results/chilense_sitiens/chilenseID_sitiens > $wd/Results/GO.IDs.all.species
