@@ -101,11 +101,9 @@
 
 # Extract both the nucleotide and amino acid sequences. The sequences are extracted from the S.chilense genome coding sequence (augustus.with.hints.codingseq) and protein sequence (augustus.with.hints.filtered.aa.fasta) files which are stored in /home/steffi/ folder
 # Nucleotide sequence extraction
-#/opt/bix/samtools/1.9/samtools faidx augustus.with.hints.codingseq -r Results/chilense.GOtermsID.regions > Results/chilense.GO.terms.salt.drought.IDs.fasta
   seqkit grep -f Results/chilense.GO.terms.regions augustus.with.hints.codingseq > Results/chilense.GO.terms.salt.drought.IDs.fasta
 
 # Amino acid sequence extraction
-#/opt/bix/samtools/1.9/samtools faidx augustus.with.hints.filtered.aa.fasta -r Results/chilense.GO.terms.regions > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
   seqkit grep -f Results/chilense.GO.terms.regions augustus.with.hints.filtered.aa.fasta > Results/chilense.GO.terms.salt.drought.IDs.aa.fa
 
 # Merge S.chilense and other species proteins file
