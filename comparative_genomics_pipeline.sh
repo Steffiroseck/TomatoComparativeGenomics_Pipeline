@@ -45,35 +45,22 @@
   sitiens_protein=$wd/genomes/Ssitiens/sitiens_augustus.hints.aa
 
 # Extract IDs and gene descriptions from the file
-  tr ";" "\n" < $wd/chilense_augustus_with_description.gff3 | grep -E '(ID|Description=)' | cut -d '=' -f 2 | paste - - |  tr ' ' '_' > $wd/chilense.id.description
+  #tr ";" "\n" < $wd/chilense_augustus_with_description.gff3 | grep -E '(ID|Description=)' | cut -d '=' -f 2 | paste - - |  tr ' ' '_' > $wd/chilense.id.description
 
 # Extract the chilenseID , CDS, CDS start, CDS end and  Gene Ontology IDs and write to a file.
 # The 9th column has the GO IDs, which are separated using ";". These GO IDs should be splitted.
-  cat $wd/chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$3,$4,$5, $9}' > $wd/Results/Chilense.augustus.interpro.GO.IDs  
-
-# Split 9th column based on ;. This will make GO IDs in a separate column separated by tab
-  sed 's/[; ]\+/\t/g' $wd/Results/Chilense.augustus.interpro.GO.IDs > $wd/Results/Chilense.augustus.interpro.GO.IDs.split
-
-# Print only GO IDS and write it to a file. The output file will now look like each row with GO IDs corresponding to it separated by comma.
-  awk '{for (i=1;i<=NF;i++){if ($i ~/Ontology_id/) {print $i}}}' $wd/Results/Chilense.augustus.interpro.GO.IDs.split > $wd/Results/Chilense.GO.IDs
-
+# Split 9th column based on ;. This will make GO IDs in a separate column separated by tab and print only GO IDS
 # Split the comma separated values in each column to multiple rows
-# split the IDs based on "="
-  tr '=' '\n' < $wd/Results/Chilense.GO.IDs > $wd/Results/Chilense.GO.IDs.1 
-
-# split based on .,.
-  tr ',' '\n' < $wd/Results/Chilense.GO.IDs.1 > $wd/Results/Chilense.GO.IDs.final
+# split the IDs based on "=" and ","
+  cat $wd/chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1,$3,$4,$5, $9}' | sed 's/[; ]\+/\t/g' | awk '{for (i=1;i<=NF;i++){if ($i ~/Ontology_id/) {print $i}}}' | tr '=' '\n' | tr ',' '\n' > $wd/Results/Chilense.GO.IDs
 
 # Now, remove .ontology_id. from the  file
-  sed -i '/Ontology_id/d' $wd/Results/Chilense.GO.IDs.final
+  sed -i '/Ontology_id/d' $wd/Results/Chilense.GO.IDs
 
 # Next, For all the GO IDs extracted from S.chilense, the GO Terms are extrcated. 
 # R code to extract GO terms for the GO IDs extracted.
 # This r script will save the GO IDs with salt/drought keywords to chilense.GO.terms.salt.drought file
   Rscript $wd/scripts/extract_GO_terms.R
-
-# Extract ID, Gene start and stop from the Interpro.gff3 file for the GO IDs in the chilense.GO.terms.salt.drought
-  awk '{print $1}' $wd/Results/chilense.GO.terms.salt.drought | sed '1d' > $wd/Results/chilense.GO.terms.salt.drought.IDs
 
 # Extract the gene IDs corresponding to each of the GO IDs related to salt/drought keywords
   grep -f $wd/Results/chilense.GO.terms.salt.drought.IDs <$wd/chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1}' > $wd/Results/chilense.GO.terms.salt.drought.IDs.genes
