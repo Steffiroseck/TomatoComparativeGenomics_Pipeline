@@ -5,7 +5,7 @@
 # Set the working directory
 
   setwd("/home/steffi/")
-  data = scan('Results/Chilense.GO.IDs.final', character(), sep='\t')
+  data = scan('Results/Chilense.GO.IDs', character(), sep='\t')
   result=select(GO.db, keys=data, columns = c("TERM"), keytype = "GOID")
   result=data.frame(result)
   colnames(result)=c('GO', 'TERM')
