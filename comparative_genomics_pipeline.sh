@@ -62,6 +62,9 @@
 # This r script will save the GO IDs with salt/drought keywords to chilense.GO.terms.salt.drought file
   Rscript $wd/scripts/extract_GO_terms.R
 
+# Extract just the important GO IDs, so remove the GO terms from the R output file
+  awk '{print $1}' $wd/Results/chilense.GO.terms.salt.drought | sed '1d' > $wd/Results/chilense.GO.terms.salt.drought.IDs
+  
 # Extract the gene IDs corresponding to each of the GO IDs related to salt/drought keywords
   grep -f $wd/Results/chilense.GO.terms.salt.drought.IDs <$wd/chilense_augustus_with_Interpro_filtered.gff3 | awk 'BEGIN {OFS = "\t"}; {print $1}' > $wd/Results/chilense.GO.terms.salt.drought.IDs.genes
 
