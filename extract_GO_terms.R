@@ -18,4 +18,4 @@
   write.table(data.frame(result),"Results/chilense.GO.terms.all", quote=F, row.names=F)
 
 # Important GO terms related to the keywords searched are written to a file
-  write.table(data.frame(dup),"Results/chilense.GO.terms.salt.drought", quote=F, row.names=F, sep="\t")
+  write.table(data.frame(dup),"Results/chilense.GO.terms.salt.drought.IDs", quote=F, row.names=F, sep="\t")
