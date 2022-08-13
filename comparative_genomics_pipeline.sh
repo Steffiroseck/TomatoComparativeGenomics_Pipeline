@@ -417,4 +417,16 @@
   seqkit grep -f $cpi/pimpinellifoliumID $pimpinellifolium | awk 'BEGIN {print ">S.pimpinellifolium"};!/^>/{print}' > $cpi/pimpinellifoliumID.fasta
   seqkit grep -f $cs/sitiensID $sitiens | awk 'BEGIN {print ">S.sitiens"};!/^>/{print}' > $cs/sitiensID.fasta
   
-  
+ # Concatenate the above fasta sequences into a single multifasta file.
+ # This is for running the Multiple Sequence Alignment
+   cat $cl/lycopersicumID.fasta $cly/lycopersicoidesID.fasta $cp/pennelliiID.fasta $cpi/pimpinellifoliumID.fasta $cs/sitiensID.fasta > $wd/Results/LLPPS.fasta
+ # count the number of sequences in the Multi fasta merged file. It should be same as the number of genomes in the study
+   grep ">" $wd/Results/LLPPS.fasta
+   
+ # Run the Multiple Sequence Alignment program
+   mafft $wd/Results/LLPPS.fasta > $wd/Results/LLPPS.mafft.out
+   
+ # Generate the Phylogenetic tree
+   raxmlHPC -d -p 12345 -m GTRGAMMAI -s $wd/Results/LLPPS.mafft.out -n $wd/Results/LLPPS
+   
+ # Visualise the tree in any of the tree viewing softwares like Figtree or iTOL.
