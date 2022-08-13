@@ -4,16 +4,14 @@
   wd=/home/steffi
 
 # Paths to the softwares in the pipeline in the Rambo server
-  samtools=/opt/bix/samtools/1.9/samtools
   blast=/opt/bix/blast+/2.13.0/bin
   seqkit=$wd/anaconda3/bin/seqkit
-  bcftools=/opt/bix/bcftools/1.6/bcftools
   mafft=$wd/installations/mafft-linux64/mafftdir/bin/mafft
-  snp-sites=$wd/installations/snp-sites/src/snp-sites
   nrdb=$wd/nr_2.4
   psiblast=/opt/bix/blast+/2.4.0/bin/psiblast
   cdhit=/opt/bix/cdhit/4.6.1/cd-hit
   blastdbcmd=/opt/bix/blast+/2.4.0/bin/blastdbcmd
+  provean =/opt/bix/provean/1.1.5/src/provean
 
 
 # Assuming that the initial file for analysis is in /home/steffi which is the present working directory.
@@ -173,13 +171,13 @@
   for i in *.mafft_out.fa; 
   do 
   echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
+  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
   for i in *.proveaninput.fa;
   do 
-  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
   echo ${cmd}
   eval ${cmd}
   done
@@ -226,13 +224,13 @@
   for i in *.mafft_out.fa; 
   do 
   echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
+  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
   for i in *.proveaninput.fa;
   do 
-  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
   echo ${cmd}
   eval ${cmd}
   done
@@ -279,13 +277,13 @@
   for i in *.mafft_out.fa; 
   do 
   echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
+  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
   for i in *.proveaninput.fa;
   do 
-  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
   echo ${cmd}
   eval ${cmd}
   done
@@ -332,13 +330,13 @@
   for i in *.mafft_out.fa; 
   do 
   echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
+  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
   for i in *.proveaninput.fa;
   do 
-  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
   echo ${cmd}
   eval ${cmd}
   done
@@ -385,13 +383,13 @@
   for i in *.mafft_out.fa; 
   do 
   echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA.py ${i} > ${i%.mafft_out.*}.var
+  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
   for i in *.proveaninput.fa;
   do 
-  cmd="/opt/bix/provean/1.1.5/src/provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
+  cmd="$provean -q ${i} -d $nrdb -v ${i%.proveaninput.fa*}.var --psiblast $psiblast --cdhit $cdhit --blastdbcmd $blastdbcmd --num_threads 40 > ${i%.proveaninput.fa*}.proveanout"
   echo ${cmd}
   eval ${cmd}
   done
