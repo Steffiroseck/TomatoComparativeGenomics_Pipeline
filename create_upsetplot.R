@@ -18,6 +18,6 @@ myGeneSets <- list(
 # Save the plot as pdf file
 pdf("Results/Upsetplot_aminoacids.pdf")
 upset(fromList(myGeneSets),order.by = "freq",
-     keep.order = TRUE, text.scale = c(1.3, 1.3, 1, 1, 2, 0.75))
+     keep.order = TRUE, text.scale = c(1.3, 1.3, 1, 1, 2, 0.75), point.size = 3.5)
 dev.off()
 
