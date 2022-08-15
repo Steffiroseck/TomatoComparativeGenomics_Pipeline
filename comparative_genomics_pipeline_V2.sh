@@ -175,6 +175,14 @@
   done
   cd
 
+# Extract only the deleterious variants from the Provean output.
+# Deleterious variants are the ones with PROVEAN score < -2.5.
+# We also remove empty files which doesnt have any deleterious variants
+for i in $cl/*.proveanout $cp/*.proveanout $cly/*.proveanout $cpi/*.proveanout $cs/*.proveanout;
+do
+awk '/# VARIATION/{p=1}p' ${i} | awk -F'\t' '$2 < -2.5' > ${i%.proveanout*}.deleterious | find  -type f -empty -delete
+done
+
 # Generate an Upset plot to get the gene IDs intersections between different species in the study. 
 # A data table needs to be created with all the S.chilense IDs matched to the different species in the study. Once the data table is created, the R script to generate upset plot is saved as a separate script.
   paste $wd/Results/chilense_lycopersicum/chilenseID_lycopersicum $wd/Results/chilense_lycopersicoides/chilenseID_lycopersicoides $wd/Results/chilense_pennellii/chilenseID_pennellii $wd/Results/chilense_pimpinellifolium/chilenseID_pimpinellifolium $wd/Results/chilense_sitiens/chilenseID_sitiens > $wd/Results/GO.IDs.all.species
