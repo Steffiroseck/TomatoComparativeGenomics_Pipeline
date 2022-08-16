@@ -163,7 +163,7 @@
   for i in $cl/*.mafft_out.fa $cp/*.mafft_out.fa $cly/*.mafft_out.fa $cpi/*.mafft_out.fa $cs/*.mafft_out.fa; 
   do 
   echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
+  python $wd/scripts/extract_variants_indels_from_MSA_v2.py -f ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
