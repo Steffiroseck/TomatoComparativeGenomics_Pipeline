@@ -60,7 +60,7 @@
 # Next, For all the GO IDs extracted from S.chilense, the GO Terms are extrcated. 
 # R code to extract GO terms for the GO IDs extracted.
 # This r script will save the GO IDs with salt/drought keywords to chilense.GO.terms.salt.drought file
-  Rscript $wd/scripts/extract_GO_terms.R
+  Rscript $wd/TomatoComparativeGenomics_Pipeline/extract_GO_terms.R
 
 # Extract just the important GO IDs, so remove the GO terms from the R output file
   awk '{print $1}' $wd/Results/chilense.GO.terms.salt.drought | sed '1d' > $wd/Results/chilense.GO.terms.salt.drought.IDs
@@ -163,7 +163,7 @@
   for i in $cl/*.mafft_out.fa $cp/*.mafft_out.fa $cly/*.mafft_out.fa $cpi/*.mafft_out.fa $cs/*.mafft_out.fa; 
   do 
   echo ${i} processing....
-  python $wd/scripts/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
+  python $wd/TomatoComparativeGenomics_Pipeline/extract_variants_indels_from_MSA_v2.py ${i} > ${i%.mafft_out.*}.var
   done
 
 # Run PROVEAN analysis
@@ -191,7 +191,7 @@
   sed  -i '1i chilense_lycopersicum\tchilense_lycopersicoides\tchilense_pennellii\tchilense_pimpinellifolium\tchilense_sitiens' $wd/Results/GO.IDs.all.species
 
 # Run the Rscript to generate the upset plot
-  Rscript $wd/scripts/create_upsetplot.R
+  Rscript $wd/TomatoComparativeGenomics_Pipeline/create_upsetplot.R
 
 # Generate a phylogenetic tree of all the Blast hits in lycopersicum, lycopersicoides, pennellii, pimpinellifolium, and sitiens against chilense GO terms
 # Extract the fasta sequences of the IDs in the Blast hits
