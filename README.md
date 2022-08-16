@@ -31,7 +31,9 @@ Please follow the below instructions if the R packages and tools used in this pi
 # 2. Seqkit v2.3.0
 
 Download compressed executable file of your operating system, and decompress it.
+		
 		tar -zxvf *.tar.gz
+		
 Simply transfer it to /usr/local/bin if you have root access:
 
 # 3. NCBI-BLAST v2.13.0
