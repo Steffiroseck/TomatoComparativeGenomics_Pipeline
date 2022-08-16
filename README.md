@@ -30,6 +30,10 @@ Please follow the below instructions if the R packages and tools used in this pi
         
 # 2. Seqkit v2.3.0
 
+Download compressed executable file of your operating system, and decompress it.
+		tar -zxvf *.tar.gz
+Simply transfer it to /usr/local/bin if you have root access:
+
 # 3. NCBI-BLAST v2.13.0
 
 This is available at the NCBI ftp site (ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.13.0/)
@@ -73,3 +77,4 @@ Alternatively, if your system has Anaconda or Miniconda installed, a conda insta
 
    		conda install -c bioconda mafft
    		conda install -c bioconda seqkit
+		conda install -c ostrokach-forge provean
