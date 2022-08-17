@@ -185,6 +185,8 @@
 
 # Provean analysis might generate empty files for the genes with no variants between the comparisons. You  can remove them by typing;
   find  -type f -empty -delete
+  find  -type f -name '*.deleterious' -empty | wc -l
+  find  -type f -name '*.var' -empty | wc -l
   
 # Get the Top 5 genes with the highest number of deleterious variants
   for i in $cl/*.deleterious $cp/*.deleterious $cly/*.deleterious $cpi/*.deleterious $cs/*.deleterious; 
