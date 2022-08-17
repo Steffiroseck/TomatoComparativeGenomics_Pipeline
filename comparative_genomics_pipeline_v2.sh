@@ -7,11 +7,11 @@
   blast=/opt/bix/blast+/2.13.0/bin
   seqkit=$wd/anaconda3/bin/seqkit
   mafft=$wd/installations/mafft-linux64/mafftdir/bin/mafft
-  nrdb=$wd/nr_2.4
+  nrdb=$wd/nr_2.4/nr
   psiblast=/opt/bix/blast+/2.4.0/bin/psiblast
   cdhit=/opt/bix/cdhit/4.6.1/cd-hit
   blastdbcmd=/opt/bix/blast+/2.4.0/bin/blastdbcmd
-  provean =/opt/bix/provean/1.1.5/src/provean
+  provean=/opt/bix/provean/1.1.5/src/provean
 
 
 # Assuming that the initial file for analysis is in /home/steffi which is the present working directory.
