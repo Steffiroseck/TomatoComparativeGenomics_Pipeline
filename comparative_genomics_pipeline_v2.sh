@@ -71,6 +71,10 @@
 # Extract both the nucleotide and amino acid sequences. The sequences are extracted from the S.chilense genome coding sequence (augustus.with.hints.codingseq) and protein sequence (augustus.with.hints.filtered.aa.fasta) files which are stored in /home/steffi/ folder
 # Nucleotide sequence extraction
   seqkit grep -f $wd/Results/chilense.GO.terms.salt.drought.IDs.genes $wd/augustus.with.hints.codingseq > $wd/Results/chilense.GO.terms.salt.drought.IDs.fasta
+
+# Save the sequences in a single line for tree generation
+  grep -v ">" $wd/Results/chilense.GO.terms.salt.drought.IDs.fasta|tr '\n' ' ' | sed -e 's/ //g' |sed 's/^/>S.chilense\n/'> $wd/Results/chilense.tree.fasta
+
 # Amino acid sequence extraction
   seqkit grep -f $wd/Results/chilense.GO.terms.salt.drought.IDs.genes $wd/augustus.with.hints.filtered.aa.fasta > $wd/Results/chilense.GO.terms.salt.drought.IDs.aa.fa
 
@@ -214,7 +218,7 @@
   
  # Concatenate the above fasta sequences into a single multifasta file.
  # This is for running the Multiple Sequence Alignment
-   cat $cl/lycopersicumID.fasta $cly/lycopersicoidesID.fasta $cp/pennelliiID.fasta $cpi/pimpinellifoliumID.fasta $cs/sitiensID.fasta > $wd/Results/LLPPS.fasta
+   cat $wd/Results/chilense.tree.fasta $cl/lycopersicumID.fasta $cly/lycopersicoidesID.fasta $cp/pennelliiID.fasta $cpi/pimpinellifoliumID.fasta $cs/sitiensID.fasta > $wd/Results/LLPPS.fasta
  # count the number of sequences in the Multi fasta merged file. It should be same as the number of genomes in the study
    grep ">" $wd/Results/LLPPS.fasta
    
