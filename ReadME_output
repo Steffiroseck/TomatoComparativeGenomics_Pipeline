@@ -1,0 +1,22 @@
+For executing the script, Follow the steps below;
+
+1. Download the pipeline script
+git clone https://github.com/Steffiroseck/TomatoComparativeGenomics_Pipeline.git or you can download the zip folder from the github link https://github.com/Steffiroseck/TomatoComparativeGenomics_Pipeline 
+
+2. Go to the downloaded folder. Unzip the folder if you have downloaded the zipped file. Otherwise enter the pipeline folder by typing
+cd TomatoComparativeGenomics_Pipeline/
+
+3. Now open the comparative_genomics_pipeline_v2.sh script in any text editor edit the following variables;
+  wd - enter the working directory path
+  In lines 7 to 14, enter the exact path to the tools 
+  Lines 36 to 45, add exact paths to genome and protein fasta files of the species. Make sure that, the correct species paths are added to the correct variables.
+    For example, variable lycopersicum should contain lycopersicum genome only.
+4. Now copy the initial GFF file for the species under the study (here, it is S. chilense) to the working directory folder ($wd). The GFF file should contain the gene IDs, and their Gene Ontology IDS with descriptions of the GO terms.
+5. Save the file.
+6. Execute the script
+    ./comparative_genomics_pipeline_v2.sh
+              or
+    bash comparative_genomics_pipeline_v2.sh
+7. This will create a directory named "Results" in the current working directory ($wd).
+8. After that, it will create sub-directories in the folder Results for each of the comparative analysis. Here,5 sub-folders are created inside Results (chilense_lycopersicum,chilense_lycopersicoides,chilense_pennellii,chilense_pimpinellifolium, and chilense_sitiens)
+9. For each of the species comparisons, files are written to the corresponding folders for each species.
