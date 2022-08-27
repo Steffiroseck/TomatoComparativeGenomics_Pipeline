@@ -193,11 +193,11 @@
   #find  -type f -name '*.var' -empty | wc -l
   
 # Write all the deleterious variants with their number sorted to a file
-  find $cl -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cl/all_deleterious_genes
-  find $cp -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cp/all_deleterious_genes
-  find $cly -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cly/all_deleterious_genes
-  find $cpi -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cpi/all_deleterious_genes
-  find $cs -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cs/all_deleterious_genes 
+  find $cl -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cl/chilense_lycopersicum_deleteriousgenes
+  find $cp -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cp/chilense_pennellii_deleteriousgenes
+  find $cly -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cly/chilense_lycopersicoides_deleteriousgenes
+  find $cpi -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cpi/chilense_pimpinellifolium_deleteriousgenes
+  find $cs -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' > $cs/chilense_sitiens_deleteriousgenes 
   
 # Get the Top 5 genes with the highest number of deleterious variants
   find $cl -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' | head -5 > $cl/Top5_deleterious_genes
@@ -205,6 +205,17 @@
   find $cly -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' | head -5 > $cly/Top5_deleterious_genes
   find $cpi -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' | head -5 > $cpi/Top5_deleterious_genes
   find $cs -type f -name "*.deleterious" | xargs wc -l | sort -rn | grep -v ' total$' | head -5 > $cs/Top5_deleterious_genes  
+  
+# Finding the deleterious genes that are shared between salt and drought resistant and sensitive species
+  for i in $cl/chilense_lycopersicum_deleteriousgenes $cp/chilense_pennellii_deleteriousgenes $cly/chilense_lycopersicoides_deleteriousgenes $cpi/chilense_pimpinellifolium_deleteriousgenes $cs/chilense_sitiens_deleteriousgenes;
+  do
+  sed 's|.*/\(.*\)_.*|\1|' $i > ${i%_deleteriousgenes*}_deleteriousgeneIDs
+  done
+  
+  cat $cl/chilense_lycopersicum_deleteriousgeneIDs Results/chilense_lycopersicoides/chilense_lycopersicoides_deleteriousgeneIDs Results/chilense_pennellii/chilense_pennellii_deleteriousgeneIDs Results/chilense_pimpinellifolium/chilense_pimpinellifolium_deleteriousgeneIDs Results/chilense_sitiens/chilense_sitiens_deleteriousgeneIDs |sort |uniq -c |sed -n -e 's/^ *5 \(.*\)/\1/p' > $wd/Results/common.deleteriousgenes
+  
+  chilense_description=$wd/chilense.id.description
+  grep -i -f $wd/Results/common.deleteriousgenes $chilense_description > $wd/Results/common.deleteriousgenes.descriptions
  
 # Generate an Upset plot to get the gene IDs intersections between different species in the study. 
 # A data table needs to be created with all the S.chilense IDs matched to the different species in the study. Once the data table is created, the R script to generate upset plot is saved as a separate script.
