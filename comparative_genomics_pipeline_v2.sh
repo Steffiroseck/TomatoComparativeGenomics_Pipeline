@@ -245,6 +245,6 @@
    mafft $wd/Results/LLPPS.fasta > $wd/Results/LLPPS.mafft.out
    
  # Generate the Phylogenetic tree
-   raxmlHPC -d -p 12345 -m GTRGAMMAI -s $wd/Results/LLPPS.mafft.out -n $wd/Results/LLPPS
+   raxmlHPC -d -p 12345 -m GTRGAMMAI -N 100 -s $wd/Results/LLPPS.mafft.out -n $wd/Results/LLPPS
    
  # Visualise the tree in any of the tree viewing softwares like Figtree or iTOL.
